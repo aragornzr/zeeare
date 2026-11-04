@@ -15,8 +15,8 @@ h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(28px,3.4vw,44p
 .camera-controls button{width:34px;height:34px;border:0;background:none;font-size:18px}
 .camera-controls button+button{border-left:1px solid #ffffff20}
 /* Pure, unobstructed 16:9 picture & 3D stage */
-.experience{position:relative;width:100%;aspect-ratio:16/9;max-height:76vh;overflow:hidden;background:#05080c}
-.experience canvas{position:absolute;width:100%;height:100%;inset:0;display:block;touch-action:none;cursor:grab;object-fit:contain}
+.experience{position:relative;width:100%;aspect-ratio:16/9;max-height:76vh;overflow:hidden;background:#05080c;perspective:1400px;transform-style:preserve-3d}
+.experience canvas{position:absolute;width:100%;height:100%;inset:0;display:block;touch-action:none;cursor:grab;object-fit:contain;transition:transform .12s ease-out,filter .2s ease;will-change:transform}
 .experience canvas:active{cursor:grabbing}
 .vignette{display:none}
 /* Control deck sits cleanly below the picture/3D canvas — zero overlap on the image */

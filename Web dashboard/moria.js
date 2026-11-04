@@ -44,12 +44,25 @@ const descriptions={
 };
 const images=new Map(),audio=new MoriaAudio();let location='bridge',mode='cinema',active=true,playing=false,time=0,lastTime=0,raf=0,geometry=null,geometryPromise=null,loadVersion=0;
 let view={zoom:1,x:0,y:0},recorder=null,chunks=[],recordURL=null,recording=false;
+const hover3D={x:0,y:0,tx:0,ty:0};
 const sparks=Array.from({length:140},(_,i)=>({x:(Math.sin(i*341.3)*43758.5)%1,y:i/140,speed:.045+(i%7)*.009,size:.65+i%3}));
+const HOVER_STONES=Array.from({length:22},(_,i)=>({
+ x:.28+((i*37)%100)/100*.38,
+ y:.38+((i*53)%100)/100*.37,
+ z:.48+(i%6)*.16,
+ rx:.0045+(i%5)*.0022,
+ ry:.0035+(i%4)*.0018,
+ speed:1.35+(i%7)*.24,
+ phase:i*1.17,
+ rot:(i*47)%360*Math.PI/180,
+ rotSpeed:(i%2===0?1:-1)*(.18+(i%5)*.06),
+ magma:i%3===0
+}));
 function isInterior(loc=location){return loc==='hall'||loc==='chase'||loc==='bridge';}
 function isHall(loc=location){return loc==='hall'||loc==='chase';}
 function loadImage(key){
  if(images.has(key))return images.get(key);
- const promise=new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=()=>reject(Error('Could not load the Moria scenery.'));img.src=`assets/moria/${descriptions[key].image}?v=20261104-cycle4k`;});images.set(key,promise);return promise;
+ const promise=new Promise((resolve,reject)=>{const img=new Image();img.onload=()=>resolve(img);img.onerror=()=>reject(Error('Could not load the Moria scenery.'));img.src=`assets/moria/${descriptions[key].image}?v=20261104-3dhover`;});images.set(key,promise);return promise;
 }
 let image=null,chaseImage=null,bridgeImage=null,hallImage=null;
 export const battleChapter=t=>t<8?'GANDALF LIGHTS THE HALL OF DURIN':t<16?'SURROUNDED BY THE GOBLINS OF MORIA':t<24?'THE BALROG OF MORGOTH SEEN AFAR':'THE STAND AT KHAZAD-DÛM';
@@ -101,6 +114,167 @@ function drawStaffRayOnCompany(ctx2d,sx,sy,px,py,w,h,intensity=1){
  ctx2d.fill();
  ctx2d.restore();
 }
+function draw3DHoverReliefPatch(ctx2d,img,rect,cxNorm,cyNorm,rxNorm,ryNorm,dx,dy,scaleBoost,rimColor){
+ const cx=rect.x+rect.w*cxNorm,cy=rect.y+rect.h*cyNorm;
+ const rx=rect.w*rxNorm,ry=rect.h*ryNorm;
+ ctx2d.save();
+ ctx2d.translate(cx+dx,cy+dy);
+ ctx2d.scale(scaleBoost,scaleBoost);
+ ctx2d.translate(-cx,-cy);
+ ctx2d.shadowColor='rgba(0,0,0,0.78)';
+ ctx2d.shadowBlur=Math.max(18,rect.w*.018);
+ ctx2d.shadowOffsetX=-dx*1.35;
+ ctx2d.shadowOffsetY=Math.max(8,rect.h*.012)-dy*1.15;
+ ctx2d.beginPath();
+ ctx2d.ellipse(cx,cy,rx,ry,0,0,Math.PI*2);
+ ctx2d.clip();
+ ctx2d.drawImage(img,rect.x,rect.y,rect.w,rect.h);
+ ctx2d.restore();
+ ctx2d.save();
+ ctx2d.globalCompositeOperation='screen';
+ const rim=ctx2d.createRadialGradient(cx+dx,cy+dy,Math.min(rx,ry)*.55,cx+dx,cy+dy,Math.max(rx,ry)*1.04);
+ rim.addColorStop(0,'transparent');
+ rim.addColorStop(.82,rimColor);
+ rim.addColorStop(1,'transparent');
+ ctx2d.fillStyle=rim;
+ ctx2d.beginPath();
+ ctx2d.ellipse(cx+dx,cy+dy,rx*1.04,ry*1.04,0,0,Math.PI*2);
+ ctx2d.fill();
+ ctx2d.restore();
+}
+function draw3DBridgeHoverScene(ctx2d,activeImg,rect,w,h,t,now,animate,pose){
+ hover3D.x+=(hover3D.tx-hover3D.x)*.12;
+ hover3D.y+=(hover3D.ty-hover3D.y)*.12;
+ const orbX=hover3D.x+(animate?Math.sin(now*1.05)*.32:0);
+ const orbY=hover3D.y+(animate?Math.cos(now*1.35)*.24:0);
+ const point=(x,y)=>[rect.x+rect.w*x,rect.y+rect.h*y];
+
+ // 1. 3D Hovering Pop-Out Layer: Standing Balrog (both feet on bridge floor) & overhead fiery whip
+ const balrogBob=animate?Math.sin(t*2.1)*h*.0055:0;
+ const balrogDx=orbX*w*.014,balrogDy=orbY*h*.010+balrogBob;
+ draw3DHoverReliefPatch(ctx2d,activeImg,rect,.735,.365,.235,.335,balrogDx,balrogDy,1.022,'rgba(255,98,18,0.16)');
+
+ // 3D floor-contact shadow & molten reflection directly under BOTH Balrog feet on the stone bridge floor
+ const [lfX,lfY]=point(.665,.680),[rfX,rfY]=point(.800,.675);
+ ctx2d.save();
+ ctx2d.fillStyle='rgba(3,5,8,0.68)';
+ ctx2d.beginPath();ctx2d.ellipse(lfX+balrogDx*.4,lfY+h*.008,w*.038,h*.013,0,0,Math.PI*2);ctx2d.fill();
+ ctx2d.beginPath();ctx2d.ellipse(rfX+balrogDx*.4,rfY+h*.008,w*.038,h*.013,0,0,Math.PI*2);ctx2d.fill();
+ ctx2d.globalCompositeOperation='screen';
+ glow(lfX+balrogDx*.5,lfY,h*.048,'#ff5a0c',.22+Math.sin(t*3.4)*.05);
+ glow(rfX+balrogDx*.5,rfY,h*.048,'#ff5a0c',.22+Math.cos(t*3.4)*.05);
+ ctx2d.restore();
+
+ // 2. 3D Hovering Pop-Out Layer: Gandalf the Grey with blazing staff & white-glowing Glamdring
+ const gandalfBob=animate?Math.cos(t*2.35)*h*.005:0;
+ const gandalfDx=orbX*w*.019,gandalfDy=orbY*h*.014+gandalfBob;
+ draw3DHoverReliefPatch(ctx2d,activeImg,rect,.248,.560,.115,.245,gandalfDx,gandalfDy,1.026,'rgba(205,235,255,0.18)');
+
+ const [bx,by]=[point(.735,.360)[0]+balrogDx,point(.735,.360)[1]+balrogDy];
+ const [sx,sy]=[point(.295,.335)[0]+gandalfDx,point(.295,.335)[1]+gandalfDy];
+ const [swordHiltX,swordHiltY]=[point(.235,.595)[0]+gandalfDx,point(.235,.595)[1]+gandalfDy];
+ const [swordTipX,swordTipY]=[point(.335,.535)[0]+gandalfDx,point(.335,.535)[1]+gandalfDy];
+ const [gFootX,gFootY]=[point(.225,.785)[0]+gandalfDx*.6,point(.225,.785)[1]+gandalfDy*.4];
+
+ // 3. 3D Perspective-Tilted Hovering Magical Shockwave Rings (around staff crystal & bridge floor)
+ ctx2d.save();
+ ctx2d.globalCompositeOperation='screen';
+ for(let ring=0;ring<2;ring++){
+  const pulse=((t*.65+ring*.5)%1);
+  const radX=w*(.045+pulse*.095),radY=radX*.32;
+  ctx2d.strokeStyle=`rgba(210,238,255,${(1-pulse)*.42})`;
+  ctx2d.lineWidth=Math.max(1.5,w*.0018*(1-pulse*.5));
+  ctx2d.beginPath();
+  ctx2d.ellipse(sx,sy,radX,radY,-.18+orbX*.08,0,Math.PI*2);
+  ctx2d.stroke();
+ }
+ // Hovering 3D rune-light ellipse on the stone bridge floor around Gandalf
+ ctx2d.strokeStyle=`rgba(195,230,255,${.28+Math.sin(t*2.6)*.08})`;
+ ctx2d.lineWidth=Math.max(2,w*.002);
+ ctx2d.beginPath();
+ ctx2d.ellipse(gFootX,gFootY,w*.072,h*.019,-.11,0,Math.PI*2);
+ ctx2d.stroke();
+
+ glow(bx,by,h*.34,'#ed590a',.17+Math.sin(t*3)*.035);
+ glow(sx,sy,h*.18,'#d8eeff',.22+(playing?Math.pow(Math.max(0,Math.sin(t*.7)),8)*.18:0));
+ drawSwordGlow(ctx2d,swordHiltX,swordHiltY,swordTipX,swordTipY,w,.68+Math.sin(t*3.6)*.09+(playing?pose.clash*.35:0));
+ ctx2d.restore();
+
+ // 4. 3D Hovering Levitating Bridge Stones & Magma Shards (multi-plane 3D parallax)
+ for(const st of HOVER_STONES){
+  const bob=animate?Math.sin(t*st.speed+st.phase)*h*.014*st.z:0;
+  const driftX=animate?Math.cos(t*(st.speed*.7)+st.phase)*w*.004*st.z:0;
+  const px=rect.x+rect.w*st.x+orbX*w*.034*st.z+driftX;
+  const py=rect.y+rect.h*st.y+orbY*h*.025*st.z+bob;
+  const rw=w*st.rx*st.z,rh=h*st.ry*st.z;
+  const ang=st.rot+(animate?t*st.rotSpeed:0);
+  ctx2d.save();
+  ctx2d.translate(px,py);
+  ctx2d.rotate(ang);
+  // 3D depth drop shadow beneath each hovering stone
+  ctx2d.fillStyle='rgba(0,0,0,0.58)';
+  ctx2d.beginPath();
+  ctx2d.ellipse(-orbX*6,rh*1.35,rw*.95,rh*.55,0,0,Math.PI*2);
+  ctx2d.fill();
+  // 3D faceted rock polygon
+  ctx2d.beginPath();
+  ctx2d.moveTo(-rw,-.35*rh);
+  ctx2d.lineTo(-.25*rw,-rh);
+  ctx2d.lineTo(.85*rw,-.55*rh);
+  ctx2d.lineTo(rw,.3*rh);
+  ctx2d.lineTo(.2*rw,rh);
+  ctx2d.lineTo(-.75*rw,.65*rh);
+  ctx2d.closePath();
+  const rockGrad=ctx2d.createLinearGradient(-rw,-rh,rw,rh);
+  rockGrad.addColorStop(0,'#b8d8f8'); // Gandalf staff white-blue rim light on left facet
+  rockGrad.addColorStop(.45,'#2a3038'); // Dark Moria stone core
+  rockGrad.addColorStop(1,st.magma?'#ff6a14':'#8c431e'); // Balrog fiery rim light on right facet
+  ctx2d.fillStyle=rockGrad;
+  ctx2d.fill();
+  ctx2d.lineWidth=Math.max(1,w*.0008*st.z);
+  ctx2d.strokeStyle=st.magma?'rgba(255,165,70,0.75)':'rgba(210,235,255,0.65)';
+  ctx2d.stroke();
+  ctx2d.restore();
+ }
+
+ if(animate){
+  ctx2d.save();
+  ctx2d.globalCompositeOperation='screen';
+  for(const s of sparks){
+   const progress=(s.y+t*s.speed)%1;
+   const depth=.5+(s.size/3.6)*.85;
+   const [baseX,baseY]=point(.22+Math.abs(s.x)*.68+Math.sin(t+s.y*12)*.018,.93-progress*.78);
+   const x=baseX+orbX*w*.028*depth,y=baseY+orbY*h*.020*depth;
+   ctx2d.globalAlpha=Math.sin(progress*Math.PI)*.85;
+   ctx2d.fillStyle=s.size>2?'#ffde92':'#e27322';
+   ctx2d.beginPath();ctx2d.ellipse(x,y,s.size*depth*w/1350,s.size*depth*h/680,0,0,Math.PI*2);ctx2d.fill();
+  }
+  for(let i=0;i<8;i++){const [x,y]=point(.64+i*.018,.44-Math.sin(t*1.3+i)*.015);glow(x+balrogDx,y+balrogDy,h*(.07+Math.sin(t*2+i)*.012),'#ff6609',.035);}
+  ctx2d.restore();
+ }
+
+ // 5. 3D Volumetric Fiery Whip Lash (hovering forward in 3D space)
+ const whipPulse=playing?Math.max(.35,pose.attack):.36+Math.sin(t*2.8)*.09;
+ if(whipPulse>.02){
+  const wx=orbX*w*.022,wy=orbY*h*.016+balrogBob*.8;
+  const [w0x,w0y]=[point(.615,.425)[0]+wx,point(.615,.425)[1]+wy];
+  const [w1x,w1y]=[point(.445,.505)[0]+wx*1.15,point(.445,.505)[1]+wy*1.15];
+  const [w2x,w2y]=[point(.380,.250)[0]+wx*1.25,point(.380,.250)[1]+wy*1.25];
+  const [w3x,w3y]=[point(.490,.045)[0]+wx*1.3,point(.490,.045)[1]+wy*1.3];
+  const [w4x,w4y]=[point(.730,.060)[0]+wx*1.2,point(.730,.060)[1]+wy*1.2];
+  ctx2d.save();ctx2d.globalCompositeOperation='screen';ctx2d.lineCap='round';
+  ctx2d.strokeStyle=`rgba(255,155,45,${.42*whipPulse})`;ctx2d.shadowColor='#ff5500';ctx2d.shadowBlur=22;ctx2d.lineWidth=w*.0036;
+  ctx2d.beginPath();ctx2d.moveTo(w0x,w0y);ctx2d.bezierCurveTo(w1x,w1y,w2x,w2y,w3x,w3y);ctx2d.quadraticCurveTo(w3x+w*.12,w3y-h*.01,w4x,w4y);ctx2d.stroke();
+  ctx2d.strokeStyle=`rgba(255,242,185,${.58*whipPulse})`;ctx2d.lineWidth=w*.0015;ctx2d.stroke();
+  ctx2d.restore();
+ }
+ if(playing){
+  ctx2d.save();ctx2d.globalCompositeOperation='screen';
+  glow(sx,sy,h*.26,'#dceaff',pose.staff*.5+pose.clash*.35);
+  ctx2d.restore();
+ }
+ if(pose.caption){ctx2d.save();ctx2d.font=`${Math.max(15,Math.round(w*.018))}px Georgia`;ctx2d.textAlign='center';ctx2d.fillStyle='#fff5df';ctx2d.shadowColor='#000';ctx2d.shadowBlur=8;ctx2d.fillText(pose.caption,w/2,h*.76);ctx2d.restore();}
+}
 function draw(now){
  const w=canvas.width,h=canvas.height;if(!w||!h)return;
  ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
@@ -109,9 +283,10 @@ function draw(now){
  // When playing the 3D video on hall/chase, show the Goblin encirclement & distant Balrog chase; on bridge when paused, show Gandalf & Balrog on the bridge!
  const showChase=(isHall()&&(playing||time>0.2))||location==='chase';
  const activeImg=(showChase&&chaseImage)?chaseImage:image;
- const cinematic=interior?1+(playing?Math.sin(time/32*Math.PI)*.14:Math.sin(now*.25)*.015):1;
- const panX=view.x+(playing?Math.sin(time*.28)*.016:interior?Math.sin(now*.18)*.004:0);
- const panY=view.y+(playing?Math.cos(time*.55)*.006:0);
+ const isBridge3D=location==='bridge'&&!showChase;
+ const cinematic=interior?1+(playing?Math.sin(time/32*Math.PI)*.14:Math.sin(now*.25)*.015)+(isBridge3D?.025:0):1;
+ const panX=view.x+(playing?Math.sin(time*.28)*.016:interior?Math.sin(now*.18)*.004:0)-(isBridge3D?hover3D.x*.008:0);
+ const panY=view.y+(playing?Math.cos(time*.55)*.006:0)-(isBridge3D?hover3D.y*.006:0);
  const rect=imageRect(activeImg,w,h,view.zoom*cinematic,panX,panY);
  if(interior&&w/h<1.1){const scale=Math.max(w/activeImg.naturalWidth,h/activeImg.naturalHeight);ctx.filter='blur(20px)';ctx.drawImage(activeImg,(w-activeImg.naturalWidth*scale)/2,(h-activeImg.naturalHeight*scale)/2,activeImg.naturalWidth*scale,activeImg.naturalHeight*scale);ctx.filter='none';ctx.fillStyle='#07101bbf';ctx.fillRect(0,0,w,h);}
  ctx.drawImage(activeImg,rect.x,rect.y,rect.w,rect.h);
@@ -123,33 +298,9 @@ function draw(now){
   ctx.restore();
  }
  const point=(x,y)=>[rect.x+rect.w*x,rect.y+rect.h*y];
- if(location==='bridge'&&!showChase){
-  // Bridge of Khazad-dûm: Gandalf staff at (.502, .422), glowing white sword Glamdring (.453,.563)->(.503,.596), and standing Balrog (.715,.355) with fiery whip
-  const pose=battlePose(time),t=playing?time:now,[bx,by]=point(.715,.355),[sx,sy]=point(.502,.422);
-  const [swordHiltX,swordHiltY]=point(.453,.563),[swordTipX,swordTipY]=point(.503,.596);
-  ctx.globalCompositeOperation='screen';
-  glow(bx,by,h*.34,'#ed590a',.16+Math.sin(t*3)*.035);
-  glow(sx,sy,h*.16,'#d8eeff',.18+(playing?Math.pow(Math.max(0,Math.sin(t*.7)),8)*.18:0));
-  drawSwordGlow(ctx,swordHiltX,swordHiltY,swordTipX,swordTipY,w,.58+Math.sin(t*3.6)*.08+(playing?pose.clash*.35:0));
-  if(animate){
-   for(const s of sparks){const progress=(s.y+t*s.speed)%1;const [x,y]=point(.25+Math.abs(s.x)*.65+Math.sin(t+s.y*12)*.018,.93-progress*.7);ctx.globalAlpha=Math.sin(progress*Math.PI)*.8;ctx.fillStyle=s.size>2?'#ffde92':'#e27322';ctx.beginPath();ctx.ellipse(x,y,s.size*w/1400,s.size*h/700,0,0,Math.PI*2);ctx.fill();}
-   for(let i=0;i<8;i++){const [x,y]=point(.64+i*.018,.44-Math.sin(t*1.3+i)*.015);glow(x,y,h*(.07+Math.sin(t*2+i)*.012),'#ff6609',.03);}
-  }
-  ctx.globalAlpha=1;ctx.globalCompositeOperation='source-over';
-  // Trace and animate the actual fiery whip held by the standing Balrog (.610,.440) whipping high across (.540,.300)->(.440,.250)->(.360,.400)->(.415,.608)
-  const whipPulse=playing?Math.max(.35,pose.attack):.32+Math.sin(t*2.8)*.08;
-  if(whipPulse>.02){
-   const [w0x,w0y]=point(.610,.440),[w1x,w1y]=point(.540,.300),[w2x,w2y]=point(.440,.250),[w3x,w3y]=point(.360,.400),[w4x,w4y]=point(.415,.608);
-   ctx.save();ctx.globalCompositeOperation='screen';ctx.lineCap='round';
-   ctx.strokeStyle=`rgba(255,155,45,${.38*whipPulse})`;ctx.shadowColor='#ff5500';ctx.shadowBlur=18;ctx.lineWidth=w*.0032;
-   ctx.beginPath();ctx.moveTo(w0x,w0y);ctx.bezierCurveTo(w1x,w1y,w2x,w2y,w3x,w3y);ctx.quadraticCurveTo(w3x-w*.015,w4y-h*.04,w4x,w4y);ctx.stroke();
-   ctx.strokeStyle=`rgba(255,238,170,${.52*whipPulse})`;ctx.lineWidth=w*.0013;ctx.stroke();
-   ctx.restore();
-  }
-  if(playing){
-   glow(sx,sy,h*.26,'#dceaff',pose.staff*.5+pose.clash*.35);
-  }
-  if(pose.caption){ctx.save();ctx.font=`${Math.max(15,Math.round(w*.018))}px Georgia`;ctx.textAlign='center';ctx.fillStyle='#fff5df';ctx.shadowColor='#000';ctx.shadowBlur=8;ctx.fillText(pose.caption,w/2,h*.76);ctx.restore();}
+ if(isBridge3D){
+  const pose=battlePose(time),t=playing?time:now;
+  draw3DBridgeHoverScene(ctx,activeImg,rect,w,h,t,now,animate,pose);
  }else if(interior){
   // Hall of Durin alert watch (.755, .228) & Sprint escape from Balrog (.602, .225), casting rays onto the Company
   const pose=hallChasePose(showChase?time:0),t=playing?time:now;
@@ -232,8 +383,8 @@ function drawFilmOverlay(t){
  }
  const pt=(x,y)=>[rect.x+rect.w*x,rect.y+rect.h*y];
  const inHallIntro=t<3.2&&hallImage;
- const [sx,sy]=pt(useBridge?.502:inHallIntro?.755:.602,useBridge?.422:inHallIntro?.228:.225);
- const [bx,by]=pt(useBridge?.715:.500,useBridge?.355:.315);
+ const [sx,sy]=pt(useBridge?.295:inHallIntro?.755:.602,useBridge?.335:inHallIntro?.228:.225);
+ const [bx,by]=pt(useBridge?.735:.500,useBridge?.360:.315);
  const [px,py]=pt(inHallIntro?.44:.48,inHallIntro?.63:.65);
  fctx.save();fctx.globalCompositeOperation='screen';
  const sg=fctx.createRadialGradient(sx,sy,0,sx,sy,h*.24);
@@ -242,7 +393,7 @@ function drawFilmOverlay(t){
  if(!useBridge){
   drawStaffRayOnCompany(fctx,sx,sy,px,py,w,h,pose.staffLight);
  }else{
-  const [shx,shy]=pt(.453,.563),[stx,sty]=pt(.503,.596);
+  const [shx,shy]=pt(.235,.595),[stx,sty]=pt(.335,.535);
   drawSwordGlow(fctx,shx,shy,stx,sty,w,.62);
  }
  const bg=fctx.createRadialGradient(bx,by,0,bx,by,h*.32);
@@ -322,8 +473,23 @@ $('#timeline').addEventListener('input',event=>{if(recording)return;time=Number(
 async function enableSound(enabled){$('#sound').disabled=true;if(enabled)$('#sound').textContent='Loading sound…';try{await audio.setEnabled(enabled);audio.setLocation(isInterior()?'bridge':location);$('#sound').textContent=enabled?'Sound on':'Sound off';$('#sound').setAttribute('aria-pressed',String(enabled));}catch(error){$('#record-status').textContent=error.message;}finally{$('#sound').disabled=false;}}
 $('#sound').addEventListener('click',()=>enableSound(!audio.enabled));$('#volume').addEventListener('input',event=>audio.setVolume(Number(event.target.value)));
 const pointers=new Map();let drag=null,pinch=0;
+function update3DTilt(e){
+ if(mode!=='cinema'||reduced.matches)return;
+ const r=canvas.getBoundingClientRect();
+ if(!r.width||!r.height)return;
+ const nx=((e.clientX-r.left)/r.width-.5)*2;
+ const ny=((e.clientY-r.top)/r.height-.5)*2;
+ hover3D.tx=Math.max(-1,Math.min(1,nx));
+ hover3D.ty=Math.max(-1,Math.min(1,ny));
+ if(location==='bridge'){
+  canvas.style.transform=`perspective(1400px) rotateX(${(-hover3D.ty*3.2).toFixed(2)}deg) rotateY(${(hover3D.tx*4.2).toFixed(2)}deg) scale3d(1.016,1.016,1.016)`;
+ }else{
+  canvas.style.transform='';
+ }
+}
+canvas.addEventListener('pointerleave',()=>{hover3D.tx=0;hover3D.ty=0;canvas.style.transform='';});
 canvas.addEventListener('pointerdown',e=>{if(e.button!==0)return;canvas.setPointerCapture(e.pointerId);pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});drag={x:e.clientX,y:e.clientY,vx:view.x,vy:view.y,moved:false,multi:pointers.size>1};if(pointers.size===2){const [a,b]=[...pointers.values()];pinch=Math.hypot(a.x-b.x,a.y-b.y);if(drag)drag.multi=true;}});
-canvas.addEventListener('pointermove',e=>{if(!pointers.has(e.pointerId))return;pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(pointers.size===2){const [a,b]=[...pointers.values()],distance=Math.hypot(a.x-b.x,a.y-b.y);if(pinch)zoomBy(distance/pinch);pinch=distance;if(drag)drag.multi=true;}else if(drag){const dist=Math.hypot(e.clientX-drag.x,e.clientY-drag.y);if(dist>7)drag.moved=true;if(drag.moved){const rect=canvas.getBoundingClientRect();view.x=drag.vx+(e.clientX-drag.x)/rect.width;view.y=drag.vy+(e.clientY-drag.y)/rect.height;}}});
+canvas.addEventListener('pointermove',e=>{update3DTilt(e);if(!pointers.has(e.pointerId))return;pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});if(pointers.size===2){const [a,b]=[...pointers.values()],distance=Math.hypot(a.x-b.x,a.y-b.y);if(pinch)zoomBy(distance/pinch);pinch=distance;if(drag)drag.multi=true;}else if(drag){const dist=Math.hypot(e.clientX-drag.x,e.clientY-drag.y);if(dist>7)drag.moved=true;if(drag.moved){const rect=canvas.getBoundingClientRect();view.x=drag.vx+(e.clientX-drag.x)/rect.width;view.y=drag.vy+(e.clientY-drag.y)/rect.height;}}});
 canvas.addEventListener('pointerup',e=>{const wasClick=drag&&!drag.moved&&!drag.multi&&pointers.size===1;pointers.delete(e.pointerId);drag=null;pinch=0;if(wasClick)cyclePicture(1);});
 for(const type of ['pointercancel','lostpointercapture'])canvas.addEventListener(type,e=>{pointers.delete(e.pointerId);drag=null;pinch=0;});
 canvas.addEventListener('wheel',e=>{e.preventDefault();zoomBy(Math.exp(-Math.max(-100,Math.min(100,e.deltaY))*.002));},{passive:false});
