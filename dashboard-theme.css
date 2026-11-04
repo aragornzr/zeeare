@@ -1,0 +1,106 @@
+/* Desktop-inspired municipal dashboard. Scoped to keep the public site intact. */
+.dashboard-page{--cream:#f6f7fb;--muted:#a7adb9;--gold:#89c7ff;--green:#171a20;background:radial-gradient(ellipse at 90% 0,#35405255,transparent 55%),#171a20;font-family:Manrope,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--cream)}
+.dashboard-page .header{position:fixed;inset:0 auto 0 0;width:232px;margin:0;padding:30px 20px;display:flex;flex-direction:column;justify-content:flex-start;gap:26px;border:0;border-right:1px solid #ffffff10;background:linear-gradient(145deg,#292d34,#1c2026);z-index:3}
+.dashboard-page .brand{position:relative;display:flex;flex-direction:column;gap:12px;letter-spacing:0;font-size:16px;text-align:center;padding-top:30px;white-space:normal;width:100%}.dashboard-page .brand small{font-size:9px;letter-spacing:1.5px;margin-top:8px;color:#939ba9}.dashboard-page .brand-mark{display:grid;place-items:center;width:76px;height:76px;border-radius:50%;font-size:25px;letter-spacing:-1px;font-weight:700;color:white;background:linear-gradient(145deg,#ffcd82,#e57977 36%,#6478b9 65%,#3c6084);box-shadow:inset 0 0 0 1px #ffffff38,0 8px 22px #0004}
+.window-dots{position:absolute;top:0;left:0;display:flex;gap:8px}.window-dots i{width:11px;height:11px;border-radius:50%;background:#ff6058;box-shadow:inset 0 0 0 1px #0002}.window-dots i:nth-child(2){background:#ffbd2e}.window-dots i:nth-child(3){background:#28c840}
+.dashboard-page #sign-out{margin-top:auto;width:100%;text-align:left}.dashboard-page .dashboard-main{max-width:1500px;margin:0 auto 0 232px;padding:38px 36px 48px}.dashboard-page h1{font-family:inherit;font-size:clamp(26px,3vw,38px);font-weight:600;line-height:1.25;letter-spacing:-1.1px;margin-bottom:8px}.dashboard-page .eyebrow{font-size:10px;letter-spacing:1.8px;color:#a5aebd;margin-bottom:12px}.dashboard-page .account-intro{margin:0 0 24px;max-width:760px;line-height:1.7;color:#aeb5c1}
+.dashboard-page .dashboard-tabs{position:fixed;top:260px;left:14px;width:204px;display:flex;flex-direction:column;align-items:stretch;gap:7px;margin:0;z-index:4;background:none}.dashboard-page .dashboard-tabs .nav-action{width:100%;text-align:left;padding:13px 15px;border:1px solid transparent;background:none;border-radius:8px;font-size:12px;white-space:normal}.dashboard-page .dashboard-tabs button:before{content:'◇';display:inline-block;width:26px;color:#8ccfff;font-size:18px;vertical-align:middle}.dashboard-page #users-tab:before{content:'♧';color:#b49aff}.dashboard-page #tourism-tab:before{content:'◎';color:#ffbd65}.dashboard-page .dashboard-tabs button[aria-selected=true]{background:#ffffff10;border-color:#ffffff0b;color:white;box-shadow:0 3px 9px #0001}
+.dashboard-page .dashboard-grid{display:flex;flex-direction:column;gap:22px}.dashboard-page .dashboard-card{background:linear-gradient(135deg,#262b33,#20252c);border:1px solid #ffffff0c;border-radius:13px;padding:24px;box-shadow:0 8px 24px #00000012}.dashboard-page .dashboard-card h2{font:600 20px/1.3 Manrope,sans-serif;letter-spacing:-.4px;margin:0 0 10px}.dashboard-page #overview-panel>.dashboard-card:nth-child(2){order:-1;background:none;padding:0;border:0;box-shadow:none}.dashboard-page #overview-panel>.dashboard-card:first-child{display:grid;grid-template-columns:1fr auto;gap:2px 20px}.dashboard-page #overview-panel>.dashboard-card:first-child .eyebrow{grid-column:1/-1}.dashboard-page #user-email{margin:0;align-self:center;font-size:13px;color:#c8d2e2}.dashboard-page #overview-panel .account-note{grid-column:1/-1;margin:0}.dashboard-page #workspace-summary{margin:0 0 18px}
+.workspace-spectrum{height:15px;border-radius:5px;overflow:hidden;display:flex;gap:2px;background:#3a414f;box-shadow:inset 0 1px 2px #ffffff20}.workspace-spectrum span{flex:1;background:linear-gradient(#ff886b,#ea513b)}.workspace-spectrum span:nth-child(2){background:linear-gradient(#42b5ff,#087ee9)}.workspace-spectrum span:nth-child(3){background:linear-gradient(#ffd665,#dc9c23)}.workspace-spectrum span:nth-child(4){background:linear-gradient(#a77bff,#7138dd)}.workspace-spectrum span:nth-child(5){background:linear-gradient(#4cdbb4,#20a579)}
+.dashboard-page #department-workspace{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin:22px 0 16px}.dashboard-page .department-link{position:relative;isolation:isolate;overflow:hidden;min-height:142px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:9px;padding:24px 34px 24px 100px;border:1px solid #ffffff26;border-radius:12px;color:white;background:linear-gradient(135deg,#ff8c6b,#e64b36 80%);box-shadow:inset 0 1px 1px #ffffff35,0 5px 12px #0003;transition:transform .18s,filter .18s}.dashboard-page .department-link:hover{transform:translateY(-3px);filter:brightness(1.1)}.dashboard-page .department-link>span:first-child{font-size:23px;font-weight:600;letter-spacing:-.5px}.dashboard-page .department-link>span:nth-child(2){position:absolute;right:20px;top:calc(50% - 14px);font-size:24px;color:#ffffffc9}.dashboard-page .department-link small{font-size:11px;color:#ffffffe0;max-width:90%;line-height:1.6}.dashboard-page .department-link:before{content:'◎';position:absolute;left:20px;top:calc(50% - 29px);width:58px;height:58px;display:grid;place-items:center;font-size:34px;font-weight:400;border-radius:12px;background:linear-gradient(135deg,#ffffff40,#ffffff10);box-shadow:inset 0 1px 1px #ffffff35,0 5px 12px #0001}.dashboard-page .department-link:after{content:'';position:absolute;z-index:-1;width:80%;height:70px;right:-15%;bottom:-45px;border:2px solid #ffffff38;border-radius:50%;transform:rotate(-14deg);box-shadow:0 -8px 22px #ffffff15}
+.dashboard-page [data-department=engineering]{background:linear-gradient(135deg,#34baff,#0877dd)}.dashboard-page [data-department=engineering]:before{content:'⌘'}.dashboard-page [data-department=rhu]{background:linear-gradient(135deg,#f6ce54,#bc8617)}.dashboard-page [data-department=rhu]:before{content:'✚'}.dashboard-page [data-department=mswd]{background:linear-gradient(135deg,#a278ff,#6032c4)}.dashboard-page [data-department=mswd]:before{content:'♡'}.dashboard-page [data-department=treasurer]{background:linear-gradient(135deg,#31c5a1,#148367)}.dashboard-page [data-department=treasurer]:before{content:'₱'}.dashboard-page [data-department=hrmo]{background:linear-gradient(135deg,#639def,#3a57b2)}.dashboard-page [data-department=hrmo]:before{content:'♧'}.dashboard-page [data-department=mao]{background:linear-gradient(135deg,#93bb43,#52822a)}.dashboard-page [data-department=mao]:before{content:'♧'}.dashboard-page [data-department=attendance]{background:linear-gradient(135deg,#cb79d5,#884492)}.dashboard-page [data-department=attendance]:before{content:'◷'}
+.dashboard-page .nav-action{background:#ffffff07;border-color:#ffffff20;border-radius:7px;color:#e6ebf3}.dashboard-page .primary-button{background:#e6edf6;border-color:#e6edf6;color:#1c2530;border-radius:7px}.dashboard-page .primary-button:hover{background:white}.dashboard-page .back-link{color:#86c8ff;font-size:11px}.dashboard-page .users-table th{color:#aebdce;font-size:11px;font-weight:500}.dashboard-page #users-list .user-name-cell,.dashboard-page #users-panel .users-table th:first-child{background:#252a32}.dashboard-page #users-list tr:hover .user-name-cell{background:#303844}.dashboard-page #users-list tr:hover{background:#ffffff05}.dashboard-page .records-card,.dashboard-page .record-dialog{background:#232830;border-color:#ffffff15}.dashboard-page .department-title,.dashboard-page .record-dialog h2{font-family:inherit;font-weight:600;font-size:28px}.dashboard-page .record-stat{background:#ffffff04}.dashboard-page .record-stat strong{color:#c5deff}.dashboard-page .record-filters input,.dashboard-page .record-filters select{background:#1b2027;border-color:#ffffff20}.dashboard-page .field-hint{line-height:1.7}.dashboard-page :focus-visible{outline:2px solid #a5d5ff;outline-offset:4px}.dashboard-page .auth-status:empty{min-height:0;margin:0}.dashboard-page .department-heading{margin-top:26px}
+@media(min-width:1500px){.dashboard-page .dashboard-main{margin-left:auto;padding-left:270px}}
+@media(max-width:950px){.dashboard-page .header{width:190px;padding:24px 14px}.dashboard-page .dashboard-main{margin-left:190px;padding:28px 22px}.dashboard-page .dashboard-tabs{left:10px;width:170px}.dashboard-page .department-link{padding-left:78px;min-height:130px}.dashboard-page .department-link:before{left:15px;width:46px;height:46px;top:calc(50% - 23px);font-size:28px}.dashboard-page .department-link>span:first-child{font-size:19px}}
+@media(max-width:700px){.dashboard-page .header{position:relative;inset:auto;width:100%;height:auto;flex-direction:row;justify-content:space-between;align-items:center;padding:18px 20px;border-right:0;border-bottom:1px solid #ffffff12}.dashboard-page .brand{flex-direction:row;padding:0;gap:12px;width:auto;font-size:14px;text-align:left}.dashboard-page .brand-mark{width:42px;height:42px;font-size:16px}.dashboard-page .brand small{font-size:7px;letter-spacing:1px}.window-dots{display:none}.dashboard-page #sign-out{width:auto;margin:0}.dashboard-page .dashboard-main{margin:0;padding:24px 18px}.dashboard-page .dashboard-tabs{position:static;inset:auto;width:auto;display:flex;flex-direction:row;flex-wrap:wrap;gap:5px;margin:20px 0}.dashboard-page .dashboard-tabs .nav-action{width:auto;padding:10px;font-size:11px}.dashboard-page #department-workspace{gap:12px}.dashboard-page .department-link{padding:80px 16px 20px;min-height:175px;justify-content:flex-start}.dashboard-page .department-link:before{top:18px;left:16px}.dashboard-page .department-link>span:nth-child(2){top:26px;right:16px}.dashboard-page .department-link small{font-size:10px}.dashboard-page #overview-panel>.dashboard-card:first-child{grid-template-columns:1fr}.dashboard-page #user-email{margin:4px 0 12px}.dashboard-page .dashboard-card{padding:20px}}
+@media(max-width:360px){.dashboard-page #department-workspace{grid-template-columns:1fr}}
+
+/* The signed-in identity remains next to the persistent sign-out control. */
+.dashboard-page .session-identity{margin-top:auto;width:100%;padding:16px 8px 0;border-top:1px solid #ffffff14;display:flex;flex-direction:column;gap:8px;min-width:0}.dashboard-page .session-identity strong{font-size:13px;overflow-wrap:anywhere}.dashboard-page .session-identity>span{font-size:11px;color:#a8cfff}.dashboard-page #sign-out{margin-top:0}.dashboard-page #my-history{font-size:10px;padding:9px;text-align:left}.dashboard-page .session-identity[hidden]+#sign-out{margin-top:auto}
+@media(max-width:700px){.dashboard-page .header{flex-wrap:wrap;gap:14px}.dashboard-page .session-identity{margin:0 0 0 auto;padding:0;border:0;width:auto;max-width:180px;gap:4px}.dashboard-page #my-history{padding:5px;font-size:9px}.dashboard-page .session-identity strong{font-size:11px}.dashboard-page .session-identity>span{font-size:10px}}
+
+.communications-card{order:2}.communication-actions{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}.communications-card select,.communications-card textarea{font:inherit;font-size:13px;color:var(--cream);background:#1b2027;border:1px solid #ffffff25;border-radius:7px;padding:12px;max-width:100%}.communications-card textarea{display:block;width:100%;margin:12px 0}.communications-card select{margin:10px 8px 10px 0}.communications-card details{padding:14px 0;border-bottom:1px solid #ffffff15}.communications-card summary{cursor:pointer;font-size:13px}.communication-item{border-bottom:1px solid #ffffff15;padding:18px 0}.communications-card .communication-text{white-space:pre-wrap;color:var(--cream)!important}.communication-item small{font-size:11px;color:var(--muted)}.communication-actions [aria-pressed=true]{background:#8ac7ff22;border-color:#8ac7ff}
+
+.intro-preview{display:block;max-width:100%;max-height:300px;object-fit:contain;border-radius:12px;margin:16px 0}.communications-card>label{display:block;margin:16px 0;font-size:12px}.communications-card input[type=file]{display:block;margin:16px 0;max-width:100%}#intro-admin-panel{order:3}
+
+/* Keep department updates readable without pushing services off the workspace. */
+.communications-card{min-width:0}
+.communications-card select,.communications-card textarea{box-sizing:border-box;display:block;width:100%;min-width:0;margin:16px 0}
+.communications-card summary{white-space:normal;line-height:1.6}
+.communication-feed{max-height:240px;overflow-y:auto;overscroll-behavior:contain}
+.communication-item,.communication-text,.communication-item small{overflow-wrap:anywhere;min-width:0}
+.communication-item small{display:block;line-height:1.6}
+#department-communications{order:0}
+
+#tourism-destinations-panel{margin-bottom:22px}
+#tourism-destinations-panel form{display:flex;flex-direction:column;gap:16px;margin:20px 0}
+#tourism-destinations-panel form label{display:block;font-size:13px;overflow-wrap:anywhere}
+#tourism-destinations-panel input[type=text]{box-sizing:border-box;width:100%;min-width:0;display:block;margin-top:10px;padding:12px;font:inherit;color:var(--cream);background:#1b2027;border:1px solid #ffffff25;border-radius:7px}
+#tourism-destinations-panel input[type=checkbox]{margin-right:10px}
+#tourism-destinations-panel button{white-space:normal;overflow-wrap:anywhere}
+#tourism-destinations-panel h3{margin-top:24px}
+
+/* Shared municipal workspace: readable controls and a restrained teal palette. */
+.dashboard-page,.account-page{--cream:#edf5f7;--muted:#afc2cc;--gold:#8bdfd3;--green:#102735;color:var(--cream);font-family:Manrope,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:radial-gradient(ellipse at 100% 0,#17495866,transparent 60%),#102735;color-scheme:dark}
+.skip-link{position:fixed;top:12px;left:12px;z-index:100;transform:translateY(-180%);padding:14px 20px;border-radius:12px;background:#a2eadd;color:#102735;font-size:14px;font-weight:700}
+.skip-link:focus{transform:none}
+.dashboard-page .header{background:#132f42;border-color:#ffffff12;overflow-y:auto}
+.dashboard-page .window-dots,.dashboard-page .workspace-spectrum{display:none}
+.dashboard-page .brand{padding-top:0;text-align:left;align-items:flex-start}
+.dashboard-page .brand-mark,.account-page .brand-mark{display:grid;place-items:center;width:56px;height:56px;border-radius:18px;background:#087f83;color:white;font-size:20px;font-weight:800;letter-spacing:-1px;box-shadow:none;flex-shrink:0}
+.dashboard-page .brand small{font-size:10px;color:#afc2cc}
+.dashboard-page .dashboard-tabs{top:205px}
+.dashboard-page .dashboard-tabs .nav-action{font-size:14px;min-height:48px;border-radius:12px}
+.dashboard-page .dashboard-tabs button[aria-selected=true]{background:#8bdfd318;border-color:#8bdfd33a;color:#a2eadd;box-shadow:none}
+.dashboard-page h1{font-weight:750;letter-spacing:-1px;font-size:clamp(28px,3.2vw,42px)}
+.dashboard-page .dashboard-card,.dashboard-page .records-card,.dashboard-page .record-dialog{background:#183544;border:1px solid #aac9d51c;border-radius:20px;box-shadow:none}
+.dashboard-page .dashboard-card h2{font-family:inherit;font-weight:700;font-size:22px}
+.dashboard-page .dashboard-card p:not(.eyebrow),.dashboard-page .account-intro{font-size:14px;line-height:1.75}
+.dashboard-page .eyebrow{color:#8bdfd3;font-size:11px;font-weight:700}
+.dashboard-page .department-link{--service:#8bdfd3;background:linear-gradient(135deg,#1f4051,#183544);border-color:#aac9d52b;border-radius:20px;box-shadow:none;min-height:156px;transition:transform .18s,border-color .18s}
+.dashboard-page .department-link:hover{border-color:var(--service);filter:none;transform:translateY(-2px)}
+.dashboard-page .department-link:before{color:var(--service);background:#ffffff08;box-shadow:none;border:1px solid #ffffff0c;border-radius:16px}
+.dashboard-page .department-link:after{display:none}
+.dashboard-page .department-link>span:first-child{font-weight:700;font-size:22px}
+.dashboard-page .department-link small{font-size:13px;color:#c2d3dc}
+.dashboard-page [data-department=engineering]{--service:#93c5fd}.dashboard-page [data-department=rhu]{--service:#8bdfd3}.dashboard-page [data-department=mswd]{--service:#c4b5fd}.dashboard-page [data-department=treasurer]{--service:#fcd49a}.dashboard-page [data-department=hrmo]{--service:#a5b4fc}.dashboard-page [data-department=mao]{--service:#b9dfa0}.dashboard-page [data-department=attendance]{--service:#edb4dc}
+.dashboard-page .primary-button,.account-page .primary-button{background:#8bdfd3;border:1px solid #8bdfd3;color:#102735;border-radius:12px;font-size:14px;font-weight:700;min-height:48px}
+.dashboard-page .primary-button:hover,.account-page .primary-button:hover{background:#b0ede4}
+.dashboard-page .nav-action{display:inline-flex;align-items:center;min-height:44px;border-radius:10px;font-size:13px;white-space:normal}
+.dashboard-page .back-link,.account-page .back-link{font-size:13px;color:#8bdfd3}
+.dashboard-page .field-hint,.dashboard-page .account-note,.account-page .field-hint,.account-page .account-note{font-size:12px;line-height:1.6}
+.dashboard-page .auth-status,.account-page .auth-status{font-size:14px}
+.dashboard-page input,.dashboard-page select,.dashboard-page textarea{font-size:16px;border-radius:10px;accent-color:#8bdfd3}
+.dashboard-page .users-table th{font-size:12px;font-weight:700;color:#bdced6}
+.dashboard-page #users-list .user-name-cell,.dashboard-page #users-panel .users-table th:first-child{background:#183544}
+.dashboard-page #users-list tr:hover .user-name-cell{background:#204454}
+.dashboard-page .session-identity>span{font-size:12px;color:#8bdfd3}
+.dashboard-page #my-history{font-size:12px}
+.dashboard-page .communication-item small{font-size:12px}
+.dashboard-page .communication-item{border-color:#ffffff12}
+.dashboard-page .record-filters input,.dashboard-page .record-filters select,.dashboard-page .communications-card textarea,.dashboard-page .communications-card select{background:#102735}
+.account-page .header{border-bottom:1px solid #ffffff12;padding-top:24px;padding-bottom:24px}
+.account-page .brand{display:flex;align-items:center;gap:14px;font-size:16px;letter-spacing:0}
+.account-page .brand small{font-size:9px;letter-spacing:1.5px;color:#afc2cc}
+.account-page .account-main{padding:48px 24px}
+.account-page .account-card{width:min(100%,480px);background:#183544;border:1px solid #aac9d526;border-radius:28px;padding:40px;box-shadow:0 24px 80px #0002}
+.account-page .account-card h1{font-family:inherit;font-size:clamp(32px,6vw,42px);font-weight:750;line-height:1.2;letter-spacing:-1.2px;margin:16px 0}
+.account-page .account-card .eyebrow{font-size:10px;letter-spacing:1.5px;color:#8bdfd3}
+.account-page .account-intro{font-size:14px}
+.account-page form>label{font-size:14px}
+.account-page input[type=email],.account-page input[type=password]{font-size:16px;background:#102735;border:1px solid #aac9d538;border-radius:12px;padding:16px}
+.account-page .field-hint{margin-top:8px}
+.account-page :focus-visible,.dashboard-page :focus-visible{outline:3px solid #8bdfd3;outline-offset:3px}
+@media(min-width:1500px){.dashboard-page .dashboard-main{margin-left:232px;padding-left:36px}}
+@media(max-width:700px){.dashboard-page .header{overflow:visible}.dashboard-page .brand{flex-direction:row;align-items:center}.dashboard-page .brand-mark{width:44px;height:44px;border-radius:14px;font-size:16px}.dashboard-page .dashboard-tabs{top:auto}.dashboard-page .dashboard-tabs .nav-action{font-size:13px;min-height:44px}.dashboard-page .department-link small{font-size:12px}.dashboard-page .dashboard-main{padding:24px 16px}.account-page .header{margin:0;padding:20px;gap:16px}.account-page .account-card{padding:28px 24px}.account-page .account-main{padding:24px 16px}.dashboard-page .session-identity{max-width:160px}}
+@media(prefers-reduced-motion:reduce){.dashboard-page .department-link{transition:none}.dashboard-page .department-link:hover{transform:none}}
+
+/* Updates remain available on every workspace tab without occupying the page. */
+.dashboard-page #department-communications{margin-bottom:24px;padding:16px 20px}
+.dashboard-page .communications-summary{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.dashboard-page .communications-summary button{font-weight:700;font-size:14px;white-space:normal}
+.dashboard-page .communications-summary .field-hint{margin:0}
+.dashboard-page .unread-indicator{font-size:12px;font-weight:700;color:#8bdfd3}
+.dashboard-page #communications-content{margin-top:20px}
+.dashboard-page .communication-item>strong{font-size:12px;color:#8bdfd3}
+@media(max-width:700px){.dashboard-page #department-communications{padding:14px 16px}}

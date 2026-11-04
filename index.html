@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101d18">
+  <meta name="description" content="Explore Middle-earth with an interactive map of places, paths, and 3D landscapes.">
+  <title>Middle-earth | A new adventure</title>
+  <link rel="stylesheet" href="styles.css?v=reference-atlas-20261027">
+  <script src="script.js?v=reference-atlas-20261027" defer></script>
+</head>
+<body>
+  <main>
+  <div class="landing" id="home">
+    <header class="header">
+      <a class="brand" href="#home" aria-label="Middle-earth home"><span class="brand-mark" aria-hidden="true">✧</span><span>MIDDLE<span class="brand-divider"> / </span>EARTH<small>A WORLD BEYOND THE ORDINARY</small></span></a>
+      <button class="menu-toggle" aria-controls="navigation" aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
+      <nav id="navigation" aria-label="Main navigation">
+        <a class="nav-link active" href="#home" aria-current="page">Home</a>
+        <a class="nav-link" href="explore.html">Explore</a>
+        <button class="nav-link" data-coming="The chronicles">Chronicles <span class="soon">SOON</span></button>
+        <div class="journey-menu">
+          <button class="nav-action" id="journey-toggle" aria-expanded="false" aria-controls="journey-dropdown">Begin your journey <span aria-hidden="true">⌄</span></button>
+          <div id="journey-dropdown" class="journey-dropdown" hidden><a href="login.html">Web Dashboard <span aria-hidden="true">↗</span></a></div>
+        </div>
+      </nav>
+    </header>
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="eyebrow"><span></span> THE NEXT CHAPTER BEGINS HERE</p>
+      <h1 id="hero-title">Some journeys<br>begin with a <em>wonder.</em></h1>
+      <p class="intro">Beyond the mist, a world awaits. Step into the timeless<br class="desktop-break"> landscapes and untold stories of Middle-earth.</p>
+      <a class="primary-button hero-explore" href="explore.html">Explore Middle-earth <span aria-hidden="true">↗</span></a>
+      <div class="chapter"><span class="chapter-line"></span><p>THE WORLD IS OPEN<small>Explore places, paths, and stories.</small></p></div>
+    </section>
+    <footer class="footer"><span>A LITTLE WONDER. AN ENDLESS HORIZON.</span><span class="location"><span aria-hidden="true">⌖</span> INSPIRED BY MIDDLE-EARTH</span><span class="edition">EST. 2026 <span aria-hidden="true">✧</span></span></footer>
+  </div>
+  </main>
+  <dialog id="coming-dialog" aria-labelledby="dialog-title">
+    <button class="dialog-close" aria-label="Close dialog">×</button>
+    <p class="eyebrow">ON THE HORIZON</p>
+    <h2 id="dialog-title">A new chapter is coming.</h2>
+    <p id="dialog-description">We’re preparing the next part of your journey. Check back soon.</p>
+    <button class="primary-button dialog-return">Back to the landscape <span aria-hidden="true">↗</span></button>
+  </dialog>
+</body>
+</html>
