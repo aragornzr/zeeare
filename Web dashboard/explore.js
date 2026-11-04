@@ -1,7 +1,7 @@
-import { places, reliefPositions } from './middle-earth-places.js?v=reference-atlas-20261027';
+import { places, reliefPositions } from './middle-earth-places.js?v=lothlorien-4k-20261104-v2';
 import { routes } from './atlas-routes.js?v=reference-atlas-20261027';
 import { Atlas3D } from './atlas-3d.js?v=reference-atlas-20261027';
-import { illustratedPlaces, IllustratedAtlas } from './atlas-illustrations.js?v=reference-atlas-20261027';
+import { illustratedPlaces, IllustratedAtlas } from './atlas-illustrations.js?v=lothlorien-4k-20261104-v2';
 places.push(...routes);
 const $ = selector => document.querySelector(selector);
 const svgNS = 'http://www.w3.org/2000/svg';
@@ -85,6 +85,9 @@ function renderDetails(place) {
   if (place.x===null) {const note=document.createElement('p'); note.textContent='Earlier-age or uncertain location: included in the index, without an invented position on the Third Age map.'; $('#place-details').append(note);}
   if (scene === 'world') {
     const button=document.createElement('button');button.className='primary-button city-entry';button.textContent=`Explore ${place.name} · Cinematic & 3D ↗`;button.addEventListener('click',()=>enter3D(place));$('#place-details').append(button);
+    if (illustratedPlaces[place.name]) {
+      const artButton=document.createElement('button');artButton.className='primary-button city-entry';artButton.style.marginLeft='10px';artButton.textContent=`View ${place.name} 4K Pictures ↗`;artButton.addEventListener('click',()=>enterIllustration(place));$('#place-details').append(artButton);
+    }
   }
 }
 function centerOn(x, y, behavior = motion()) {
@@ -99,6 +102,7 @@ function choose(place, revealMap = false) {
   if(place.x!==null) centerOn(place.x,place.y);
   if(revealMap) frame.scrollIntoView({block:'nearest',behavior:motion()});
   for (const button of list.children) button.setAttribute('aria-pressed',String(button.dataset.name===place.name));
+  if(['Lothlórien','Caras Galadhon'].includes(place?.name)) enterIllustration(place);
 }
 for (const place of places.filter(p=>p.x!==null)) {
   const marker=svgElement('g',{class:'map-pin',transform:`translate(${place.x} ${place.y})`,tabindex:'0',role:'button','aria-label':`${place.name}: ${place.description}`,'aria-pressed':'false'});
@@ -146,22 +150,26 @@ function nearestPlace(anchor) {
 }
 function enter3D(place = selected || nearestPlace()) {
  if(place?.name==='Moria')return enterMoria(place);
+ if(['Lothlórien','Caras Galadhon'].includes(place?.name))return enterIllustration(place);
  return enterDestination(place);
 }
 function enterIllustration(place){
  hideReveal();hideTooltip();
+ destinationControl('active',false);$('#destination-view').hidden=true;
+ moriaControl('active',false);$('#moria-view').hidden=true;
  if(scene==='world')worldCamera={zoom,left:viewport.scrollLeft,top:viewport.scrollTop};
  if(renderer)renderer.active=false;
  selected=place;scene='art';$('#scene-3d').hidden=true;viewport.hidden=true;$('#illustrated-view').hidden=false;
  $('#world-map').hidden=false;$('#tilt-3d').hidden=true;$('#toggle-labels').hidden=true;$('#enter-city').hidden=true;$('#model-mode').hidden=false;$('#illustrated-mode').hidden=true;
- $('.relief-badge').textContent='◈ ILLUSTRATED RELIEF';
+ $('.relief-badge').textContent='◈ 4K ILLUSTRATED ATLAS';
  if(!illustratedAtlas)illustratedAtlas=new IllustratedAtlas($('#illustrated-viewport'),$('#illustrated-canvas'),$('#illustrated-image'),{
   onChange:state=>{
    if(scene!=='art')return;
+   const total=illustratedPlaces[selected?.name]?.levels?.length||1;
    $('#scene-caption').textContent=state.title.toUpperCase();$('#zoom-value').textContent=`${Math.round(state.zoom*100)}%`;
-   $('#art-next').hidden=!state.hasNext;$('#art-previous').hidden=!state.hasPrevious;
+   $('#art-next').hidden=total<=1;$('#art-previous').hidden=!state.hasPrevious;
    $('#zoom-in').disabled=state.loading||(!state.hasNext&&state.zoom>=state.maxZoom);$('#zoom-out').disabled=state.loading;
-   $('#illustration-status').textContent=state.loading?'Loading illustrated view…':`${state.title} · Illustrated interpretation`;
+   $('#illustration-status').textContent=state.loading?'Loading 4K illustrated view…':`${state.level+1} / ${total} · ${state.title} · Click picture or "Next picture ↻" to cycle`;
   },onPoint:point=>renderDetails({name:point.title,region:selected.region,description:point.description}),onExit:leave3D,onError:()=>{leave3D();renderDetails({name:selected.name,region:selected.region,description:'The illustrated view could not load. The world map and 3D landscape remain available.'});}
  });
  illustratedAtlas.load(illustratedPlaces[place.name]);renderDetails(place);$('#illustrated-viewport').focus({preventScroll:true});
@@ -289,11 +297,13 @@ updateRoutes();
 
 $('#model-mode').addEventListener('click',()=>enterModel3D(selected));
 $('#illustrated-mode').addEventListener('click',()=>enterIllustration(selected));
-$('#art-next').addEventListener('click',()=>illustratedAtlas?.next());
+$('#art-next').addEventListener('click',()=>illustratedAtlas?.cycle());
 $('#art-previous').addEventListener('click',()=>illustratedAtlas?.previous());
 for(const button of document.querySelectorAll('[data-illustration]'))button.addEventListener('click',()=>{
  const place=places.find(place=>place.name===button.dataset.illustration);
- if(!place)return;choose(place,true);enter3D(place);
+ if(!place)return;choose(place,true);
+ if(place.name==='Lothlórien')enterIllustration(place);
+ else enter3D(place);
 });
 
 $('#hobbiton-featured').addEventListener('click',()=>{const place=places.find(p=>p.name==='Hobbiton');choose(place,true);enter3D(place);});

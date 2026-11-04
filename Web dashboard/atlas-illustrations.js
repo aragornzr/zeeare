@@ -1,4 +1,24 @@
 // Supplied artwork is displayed unchanged. Each view is a labelled illustration, not a 3D mesh.
+const carasGaladhonGaladrielPoints=[
+ {title:'Lady Galadriel & Lord Celeborn',x:72,y:49,description:'Lady Galadriel in radiant white and silver-gold robes stands beside Lord Celeborn on the high royal talan, overlooking the entire tree-city of Caras Galadhon.'},
+ {title:'Galadhrim Elves on the Upper Flets',x:91,y:28,description:'Attending Elves of Lothlórien gathered upon the upper woven wooden platforms (telain) among the boughs of the great Mallorn trees.'},
+ {title:'Spiral Mallorn Stairways & Lanterns',x:41,y:44,description:'Carved wooden stairways and rope-rail bridges winding around the silver-grey trunks of giant Mallorn trees, lit by warm Elven lanterns.'},
+ {title:'Golden Mallorn Canopy of Caras Galadhon',x:48,y:14,description:'The vast golden-leaved canopy of the royal city of the Galadhrim, crowning the green hill in the Naith of Lórien.'},
+ {title:'Encircling White Wall & Silver Fosse',x:23,y:74,description:'The deep moat and white rampart encircling the base of the hill of Caras Galadhon, with the Silverlode and Misty Mountains beyond.'}
+];
+const cerinAmrothPoints=[
+ {title:'High Flet of Cerin Amroth',x:50,y:28,description:'The high wooden viewing platform built high in the giant Mallorn tree crowning the summit of the green mound of Cerin Amroth.'},
+ {title:'Elves & She-Elves Among Elanor & Niphredil',x:46,y:80,description:'Elven lords and maidens gathered in small groups here and there across the grass carpeted with golden star-shaped elanor and pale white niphredil.'},
+ {title:'Double Ring of White & Golden Mallorn Trees',x:28,y:24,description:'The inner circle of white-barked trees and outer circle of golden-leaved Mallorns that ring the timeless heart of Lothlórien.'},
+ {title:'Sunlit Paths & Gatherings on the Mound',x:78,y:74,description:'Elves and She-Elves conversing quietly along the gentle flower-strewn slopes and carved stone benches of Cerin Amroth.'}
+];
+const naithEgladilPoints=[
+ {title:'The Naith (The Gore of Lórien)',x:45,y:44,description:'The great wedge of golden Mallorn forest between the converging Silverlode (Celebrant) and the Great River Anduin.'},
+ {title:'Egladil (The Angle) & Swan-Boat Hythe',x:79,y:68,description:'The green lawn and silver landing at the pointed confluence of Celebrant and Anduin, where silver swan-boats of the Galadhrim are moored.'},
+ {title:'East Lórien & the Great River Anduin',x:84,y:46,description:'The eastern woods of Lothlórien bordering the broad, sunlit bends of the Great River Anduin.'},
+ {title:'Caras Galadhon in the Deep Naith',x:39,y:33,description:'The walled city of the Galadhrim rising upon its hill of giant golden Mallorn trees inside the Naith.'},
+ {title:'Cerin Amroth & the Silverlode (Celebrant)',x:54,y:53,description:'The flower-crowned mound of Cerin Amroth north of the shimmering course of the Silverlode flowing down from the Misty Mountains.'}
+];
 const lorienRegionPoints=[
  {title:'Caras Galadhon',x:56,y:30,description:'The tree-city of Lothlórien, shown here as an illuminated canopy settlement. Its architecture and placement within this artwork are artistic interpretations.'},
  {title:'Silverlode · Celebrant',x:48,y:58,description:'The river shown flowing from the western mountains toward the Anduin. Follow its course through this illustrated landscape.'},
@@ -20,8 +40,9 @@ const cityPoints=[
 ];
 const lorien = {
   levels: [
-    {title:'Lothlórien · regional atlas',src:'assets/illustrations/lothlorien-region.jpg',alt:'Supplied illustrated map of Lothlórien, the Misty Mountains, Silverlode and Anduin',points:lorienRegionPoints},
-    {title:'Caras Galadhon · canopy detail',src:'assets/illustrations/lothlorien-canopy.jpg',alt:'Supplied close illustrated view of Caras Galadhon among golden trees and rivers',points:lorienCanopyPoints}
+    {title:'Caras Galadhon · Lady Galadriel & Lord Celeborn Overlooking the Tree-City',src:'assets/illustrations/lothlorien-caras-galadhon-galadriel.jpg?v=20261104-v2',alt:'4K epic illustration of Lady Galadriel and Lord Celeborn with Galadhrim Elves on a high talan overlooking the entire tree-city of Caras Galadhon',points:carasGaladhonGaladrielPoints},
+    {title:'Cerin Amroth · Elves & She-Elves Gathered on the Flower-Crowned Mound',src:'assets/illustrations/lothlorien-cerin-amroth.jpg?v=20261104-v2',alt:'4K epic illustration of Cerin Amroth with Elves and She-Elves gathered in small groups among golden elanor and white niphredil flowers beneath Mallorn trees',points:cerinAmrothPoints},
+    {title:'East Lórien, Egladil & The Naith · Epic Terrain Confluence',src:'assets/illustrations/lothlorien-naith-egladil.jpg?v=20261104-v2',alt:'4K epic panoramic terrain vista of Lothlórien showing The Naith, Egladil at the confluence of the Silverlode and Anduin, East Lórien, Cerin Amroth, Caras Galadhon and the Misty Mountains',points:naithEgladilPoints}
   ]
 };
 const gondor = {
@@ -33,7 +54,7 @@ const gondor = {
 export const illustratedPlaces = {
   'Rivendell': {levels:[{title:'Rivendell · valley and halls',src:'assets/illustrations/rivendell-valley.jpg',alt:'Supplied illustrated map of Rivendell with Elven halls, bridges, gardens, waterfalls and the Bruinen',points:[{title:'The Great Hall',x:61,y:41,description:'The large Elven hall labelled in the supplied artwork. Its scale and architectural details are artistic interpretations.'},{title:'The Last Homely House',x:47,y:48,description:'Elrond’s refuge in Rivendell, represented here by the interconnected buildings and gardens.'},{title:'The Library',x:78,y:45,description:'The library pavilion labelled by this illustration; this particular building plan is imagined.'},{title:'The Council Ring',x:69,y:64,description:'The council setting shown in this artwork, interpreted as an open circular terrace.'},{title:'Bruinen River',x:44,y:77,description:'The river winding beneath bridges and waterfalls in this illustrated valley.'}]}]},
   'Lothlórien':lorien,
-  'Caras Galadhon':{levels:[lorien.levels[1]]},
+  'Caras Galadhon':lorien,
   'Gondor':gondor,
   'Minas Tirith':gondor
 };
@@ -50,7 +71,6 @@ export class IllustratedAtlas {
       const amount=event.deltaY*(event.deltaMode===1?16:event.deltaMode===2?viewport.clientHeight:1);
       this.setZoom(this.zoom*Math.exp(Math.max(-.25,Math.min(.25,-amount*.002))),{px:event.clientX-rect.left,py:event.clientY-rect.top});
     },{passive:false});
-    viewport.addEventListener('dblclick',event=>{event.preventDefault();this.zoomBy(1.25);});
     viewport.addEventListener('keydown',event=>{
       if(['+','=','-'].includes(event.key)){event.preventDefault();this.zoomBy(event.key==='-'?1/1.25:1.25);}
       if(event.key==='0'){event.preventDefault();this.reset();}
@@ -59,7 +79,7 @@ export class IllustratedAtlas {
     viewport.addEventListener('pointerdown',event=>{
       if(event.button!==0||event.target.closest('.illustration-hotspot'))return;
       viewport.setPointerCapture(event.pointerId);this.pointers.set(event.pointerId,{x:event.clientX,y:event.clientY});
-      this.drag={x:event.clientX,y:event.clientY,left:viewport.scrollLeft,top:viewport.scrollTop};
+      this.drag={x:event.clientX,y:event.clientY,left:viewport.scrollLeft,top:viewport.scrollTop,moved:false};
       if(this.pointers.size===2){const[a,b]=[...this.pointers.values()];this.pinch={distance:Math.hypot(a.x-b.x,a.y-b.y),zoom:this.zoom};this.drag=null;}
       viewport.classList.add('dragging');event.preventDefault();
     });
@@ -67,10 +87,23 @@ export class IllustratedAtlas {
       if(!this.pointers.has(event.pointerId))return;
       this.pointers.set(event.pointerId,{x:event.clientX,y:event.clientY});
       if(this.pointers.size===2&&this.pinch){const[a,b]=[...this.pointers.values()],rect=viewport.getBoundingClientRect();this.setZoom(this.pinch.zoom*Math.hypot(a.x-b.x,a.y-b.y)/Math.max(1,this.pinch.distance),{px:(a.x+b.x)/2-rect.left,py:(a.y+b.y)/2-rect.top},false);}
-      else if(this.drag){viewport.scrollLeft=this.drag.left-(event.clientX-this.drag.x);viewport.scrollTop=this.drag.top-(event.clientY-this.drag.y);}
+      else if(this.drag){if(Math.hypot(event.clientX-this.drag.x,event.clientY-this.drag.y)>12)this.drag.moved=true;viewport.scrollLeft=this.drag.left-(event.clientX-this.drag.x);viewport.scrollTop=this.drag.top-(event.clientY-this.drag.y);}
     });
-    const end=event=>{this.pointers.delete(event.pointerId);this.pinch=null;this.drag=null;if(this.pointers.size===1){const point=[...this.pointers.values()][0];this.drag={...point,left:viewport.scrollLeft,top:viewport.scrollTop};}if(!this.pointers.size)viewport.classList.remove('dragging');};
+    const end=event=>{
+      const shouldCycle=type=>type==='pointerup'&&this.drag&&!this.drag.moved&&this.pointers.size===1&&(this.profile?.levels?.length||0)>1;
+      const cycleNow=shouldCycle(event.type);
+      this.pointers.delete(event.pointerId);this.pinch=null;this.drag=null;
+      if(this.pointers.size===1){const point=[...this.pointers.values()][0];this.drag={...point,left:viewport.scrollLeft,top:viewport.scrollTop,moved:true};}
+      if(!this.pointers.size)viewport.classList.remove('dragging');
+      if(cycleNow)this.cycle();
+    };
     for(const type of['pointerup','pointercancel','lostpointercapture'])viewport.addEventListener(type,end);
+  }
+  cycle(){
+    if(!this.profile?.levels?.length)return;
+    this.history[this.level]={zoom:this.zoom,left:this.viewport.scrollLeft,top:this.viewport.scrollTop};
+    const nextIndex=(this.level+1)%this.profile.levels.length;
+    this.openLevel(nextIndex);
   }
   load(profile){this.profile=profile;this.active=true;this.history=[];this.openLevel(0);}
   openLevel(index,restore=null){

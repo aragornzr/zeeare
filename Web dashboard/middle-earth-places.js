@@ -282,8 +282,8 @@ export const places = [
   {
     "name": "Rhosgobel",
     "region": "Rhovanion",
-    "x": 625,
-    "y": 390,
+    "x": 645,
+    "y": 345,
     "description": "Radagast’s dwelling near the western eaves of Mirkwood."
   },
   {
@@ -809,12 +809,12 @@ export const reliefPositions = {
     195
   ],
   "Lothlórien": [
-    630,
-    375
+    635,
+    368
   ],
   "Caras Galadhon": [
-    642,
-    390
+    648,
+    388
   ],
   "Mirkwood": [
     730,
@@ -829,20 +829,20 @@ export const reliefPositions = {
     395
   ],
   "Rhosgobel": [
-    653,
-    355
+    698,
+    322
   ],
   "Rhovanion": [
     820,
     390
   ],
   "Beorn’s Hall": [
-    595,
-    240
+    645,
+    225
   ],
   "Gladden Fields": [
-    612,
-    335
+    635,
+    305
   ],
   "Erebor": [
     840,
