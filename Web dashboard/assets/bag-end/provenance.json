@@ -1,0 +1,12 @@
+{
+  "method": "built-in image_gen",
+  "asset": "bag-end-portrait.png",
+  "width": 1672,
+  "height": 941,
+  "requestedSize": [
+    3840,
+    2160
+  ],
+  "prompt": "prompt.txt",
+  "notes": "Generated scene portrait; independent from the native 3840 x 2160 animated WebGL scene. The returned image was not upscaled."
+}

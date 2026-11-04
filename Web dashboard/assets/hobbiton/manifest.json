@@ -1,0 +1,58 @@
+{
+  "place": "Hobbiton",
+  "liveOutput": {
+    "width": 3840,
+    "height": 2160,
+    "renderedFrom3D": true,
+    "upscaled": false
+  },
+  "savedFrame": {
+    "file": "hobbiton-3840x2160.png",
+    "width": 3840,
+    "height": 2160
+  },
+  "cinematic": {
+    "file": "hobbiton-4k-tour.webm",
+    "codec": "VP9",
+    "width": 3840,
+    "height": 2160,
+    "durationSeconds": 40,
+    "capturedFrames": 960,
+    "averageFramesPerSecond": 24,
+    "audio": true,
+    "audioCodec": "Opus",
+    "audioSampleRate": 48000,
+    "note": "Offline deterministic 3D rendering using WebCodecs; native pixels, no upscaling."
+  },
+  "portrait": {
+    "file": "hobbiton-portrait.jpg",
+    "sourceFile": "hobbiton-cinematic-source.png",
+    "sourceWidth": 1672,
+    "sourceHeight": 941,
+    "tool": "built-in image_gen",
+    "native4K": false
+  },
+  "inhabitants": {
+    "count": 12,
+    "type": "articulated geometric meshes",
+    "imageSprites": false,
+    "activities": [
+      "walking",
+      "gardening",
+      "chatting",
+      "carrying produce"
+    ],
+    "note": "Procedural sculpted mesh faces, skin pores, separate eyes and hair strands; not scanned actors."
+  },
+  "music": {
+    "file": "hobbiton-pastoral.wav",
+    "credits": "music-credits.md",
+    "originalComposition": true
+  },
+  "scenery": [
+    "Branched near and distant trees",
+    "Wood and plaster photographic PBR materials",
+    "Detailed door fittings and window gardens",
+    "Leaf geometry for cabbages, carrots, beans, tomatoes and pumpkins"
+  ]
+}

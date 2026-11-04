@@ -1,0 +1,1247 @@
+{
+  "date": "2026-10-31",
+  "browser": "Chrome/133.0.6943.16",
+  "automatedTests": 80,
+  "destinationCount": 118,
+  "renderResolution": [
+    3840,
+    2160
+  ],
+  "destinationErrors": [],
+  "destinations": [
+    {
+      "name": "Amon Hen",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Anduin",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Anfalas",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Angband",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Angmar",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Annúminas",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Argonath",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Arnor",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Arthedain",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Bag End",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Barad-dûr",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Barrow-downs",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Bay of Belfalas",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Belegaer",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Beleriand",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Belfalas",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Beorn’s Hall",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Black Gate",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Blue Mountains",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Bree",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Buckland",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Cair Andros",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Caradhras",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Caras Galadhon",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Cardolan",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Carn Dûm",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Cirith Ungol",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Cuiviénen",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Dale",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Dead Marshes",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Dol Amroth",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Dol Guldur",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Dor-lómin",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Doriath",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Dorwinion",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Dunharrow",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Dunland",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Edoras",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Emyn Muil",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Enedwaith",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Erebor",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Eregion",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Eriador",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Fangorn",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Far Harad",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Fornost",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Forochel",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Forodwaith",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Gladden Fields",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Goblin-town",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Gondolin",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Gondor",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Gorgoroth",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Great East Road",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Great West Road",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Greenway",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Grey Havens",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Haradwaith",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Havens of Sirion",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Helm’s Deep",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Henneth Annûn",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "High Pass",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "High Pass crossing",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Hildórien",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Hithlum",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Hobbiton",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Iron Hills",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Isengard",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Ithilien",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Khand",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Lake Evendim",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Lake-town",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Lamedon",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Lebennin",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Lindon",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Long Lake",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Lothlórien",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Minas Morgul",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Minas Tirith",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Mirkwood",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Misty Mountains",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Mordor",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Morgul approach",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Moria",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Morthond",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Mount Doom",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Mount Gundabad",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Nargothrond",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Near Harad",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Nurn",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Old Forest",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Old Forest Road",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Osgiliath",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Ossiriand",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Paths of the Dead",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Pelargir",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Pelennor Fields",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Rauros",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Redhorn Pass crossing",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Rhosgobel",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Rhovanion",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Rhudaur",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Rhûn",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Rivendell",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Rohan",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Sea of Núrnen",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Sea of Rhûn",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Thangorodrim",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "The Shire",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "The Wold",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Tol Sirion",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Udûn",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Umbar",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Weathertop",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Westfold",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "White Mountains",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Withered Heath",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    },
+    {
+      "name": "Woodland Realm",
+      "quality": "4k",
+      "resolution": [
+        3840,
+        2160
+      ],
+      "modeControlsVerified": true,
+      "terrainShadowMap": 4096
+    }
+  ],
+  "exports": {
+    "png": {
+      "name": "rivendell-3840x2160.png",
+      "bytes": 14360179,
+      "type": "image/png",
+      "width": 3840,
+      "height": 2160
+    },
+    "offlineFilm": {
+      "width": 3840,
+      "height": 2160,
+      "fps": 24,
+      "duration": 0.125,
+      "videoFrames": 3,
+      "audio": false,
+      "audioSampleRate": null
+    },
+    "recordedFilm": {
+      "name": "rivendell-4k-tour.webm",
+      "bytes": 150898,
+      "type": "video/webm",
+      "width": 3840,
+      "height": 2160
+    }
+  },
+  "phone": {
+    "viewport": 390,
+    "documentWidth": 390
+  },
+  "interactionErrors": [],
+  "moria": {
+    "result": [
+      {
+        "location": "west",
+        "width": 3840,
+        "height": 2160
+      },
+      {
+        "location": "east",
+        "width": 3840,
+        "height": 2160
+      },
+      {
+        "location": "bridge",
+        "width": 3840,
+        "height": 2160
+      }
+    ],
+    "phone": {
+      "width": 390,
+      "viewport": 390
+    },
+    "errors": []
+  }
+}

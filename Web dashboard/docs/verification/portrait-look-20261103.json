@@ -1,0 +1,177 @@
+[
+  {
+    "value": {
+      "name": "Bag End",
+      "ready": true,
+      "errors": [],
+      "portrait": true,
+      "cinematic": {
+        "eye": [
+          -2.8,
+          10.232953458108062,
+          18.999999999999996
+        ],
+        "target": [
+          0,
+          12.432953458108063,
+          -10
+        ]
+      },
+      "buffer": [
+        1440,
+        810
+      ],
+      "landmarks": 6
+    }
+  },
+  {
+    "value": {
+      "name": "Minas Tirith",
+      "ready": true,
+      "errors": [],
+      "portrait": true,
+      "cinematic": {
+        "eye": [
+          -14.317086365225672,
+          106.85101652842988,
+          154.58162759960157
+        ],
+        "target": [
+          0,
+          64.90315219795521,
+          -24
+        ]
+      },
+      "buffer": [
+        1440,
+        810
+      ],
+      "landmarks": 2
+    }
+  },
+  {
+    "value": {
+      "name": "Rivendell",
+      "ready": true,
+      "errors": [],
+      "portrait": true,
+      "cinematic": {
+        "eye": [
+          -22.92819090404904,
+          49.52101063018006,
+          70.85068177667114
+        ],
+        "target": [
+          -10,
+          19.2,
+          -58
+        ]
+      },
+      "buffer": [
+        1440,
+        810
+      ],
+      "landmarks": 3
+    }
+  },
+  {
+    "value": {
+      "name": "Caradhras",
+      "ready": true,
+      "errors": [],
+      "portrait": true,
+      "cinematic": {
+        "eye": [
+          -18.218120242476886,
+          79.94860562237739,
+          182.12520012348452
+        ],
+        "target": [
+          0,
+          39.01862199234938,
+          0
+        ]
+      },
+      "buffer": [
+        1440,
+        810
+      ],
+      "landmarks": 1
+    }
+  },
+  {
+    "value": {
+      "name": "Grey Havens",
+      "ready": true,
+      "errors": [],
+      "portrait": true,
+      "cinematic": {
+        "eye": [
+          -35.391145257289594,
+          37.92684918485003,
+          120.46857668603238
+        ],
+        "target": [
+          -8,
+          9,
+          0
+        ]
+      },
+      "buffer": [
+        1440,
+        810
+      ],
+      "landmarks": 1
+    }
+  },
+  {
+    "value": {
+      "name": "Mirkwood",
+      "ready": true,
+      "errors": [],
+      "portrait": true,
+      "cinematic": {
+        "eye": [
+          -23.007823343424977,
+          30.415980574255194,
+          99.2725843046353
+        ],
+        "target": [
+          0,
+          6.555857534332654,
+          0
+        ]
+      },
+      "buffer": [
+        1440,
+        810
+      ],
+      "landmarks": 1
+    }
+  },
+  {
+    "value": {
+      "name": "Mordor",
+      "ready": true,
+      "errors": [],
+      "portrait": true,
+      "cinematic": {
+        "eye": [
+          -385,
+          185,
+          -735
+        ],
+        "target": [
+          -420,
+          55,
+          -510
+        ]
+      },
+      "buffer": [
+        1440,
+        810
+      ],
+      "landmarks": 10
+    }
+  }
+]

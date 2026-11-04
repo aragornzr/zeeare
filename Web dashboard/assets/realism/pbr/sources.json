@@ -1,0 +1,54 @@
+{
+  "license": "CC0-1.0",
+  "licenseUrl": "https://polyhaven.com/license",
+  "assets": [
+    {
+      "asset": "castle_brick_01",
+      "map": "rough",
+      "file": "assets/realism/pbr/stone-roughness.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/castle_brick_01/castle_brick_01_rough_1k.jpg",
+      "bytes": 263291,
+      "resolution": 1024
+    },
+    {
+      "asset": "roof_slates_02",
+      "map": "rough",
+      "file": "assets/realism/pbr/roof-roughness.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/roof_slates_02/roof_slates_02_rough_1k.jpg",
+      "bytes": 307076,
+      "resolution": 1024
+    },
+    {
+      "asset": "aerial_grass_rock",
+      "map": "rough",
+      "file": "assets/realism/pbr/grass-roughness.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/aerial_grass_rock/aerial_grass_rock_rough_1k.jpg",
+      "bytes": 362214,
+      "resolution": 1024
+    },
+    {
+      "asset": "rock_face_03",
+      "map": "rough",
+      "file": "assets/realism/pbr/rock-roughness.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/rock_face_03/rock_face_03_rough_1k.jpg",
+      "bytes": 638904,
+      "resolution": 1024
+    },
+    {
+      "asset": "bark_brown_01",
+      "map": "rough",
+      "file": "assets/realism/pbr/bark-roughness.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/bark_brown_01/bark_brown_01_rough_1k.jpg",
+      "bytes": 201307,
+      "resolution": 1024
+    },
+    {
+      "asset": "brown_mud_leaves_01",
+      "map": "rough",
+      "file": "assets/realism/pbr/dirt-roughness.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/brown_mud_leaves_01/brown_mud_leaves_01_rough_1k.jpg",
+      "bytes": 644332,
+      "resolution": 1024
+    }
+  ]
+}

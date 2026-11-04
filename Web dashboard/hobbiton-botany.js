@@ -1,0 +1,47 @@
+import * as THREE from './assets/vendor/three.module.js';
+import {applyOrganicSurface} from './organic-surface.js';
+import {graphicsLevel} from './graphics-quality.js';
+import {randomOf} from './atlas-terrain.js';
+// Reusable organic tree meshes with curved, tapered wood and fine botanical cards.
+function merged(parts){const positions=[],normals=[],uvs=[];for(const{geometry,matrix}of parts){const p=geometry.attributes.position,n=geometry.attributes.normal,u=geometry.attributes.uv,index=geometry.index,nm=new THREE.Matrix3().getNormalMatrix(matrix),v=new THREE.Vector3(),nn=new THREE.Vector3();for(let i=0;i<(index?index.count:p.count);i++){const k=index?index.getX(i):i;v.fromBufferAttribute(p,k).applyMatrix4(matrix);nn.fromBufferAttribute(n,k).applyMatrix3(nm).normalize();positions.push(v.x,v.y,v.z);normals.push(nn.x,nn.y,nn.z);uvs.push(u?u.getX(k):0,u?u.getY(k):0);}geometry.dispose();}const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));g.setAttribute('normal',new THREE.Float32BufferAttribute(normals,3));g.setAttribute('uv',new THREE.Float32BufferAttribute(uvs,2));return g;}
+const identity=new THREE.Matrix4();
+function treeGeometry(seed,variant,distant=false){const random=randomOf(seed),wood=[],leaves=[],height=variant===2?10:variant===1?5.5:8.5,crown=variant===1?2.4:3.6;
+ const branch=(points,radius)=>{const curve=new THREE.CatmullRomCurve3(points.map(p=>new THREE.Vector3(...p))),g=new THREE.TubeGeometry(curve,distant?6:12,radius,7,false),p=g.attributes.position;for(let i=0;i<p.count;i++){const t=Math.floor(i/8)/(distant?6:12),f=1-t*.78,center=curve.getPointAt(t);p.setXYZ(i,center.x+(p.getX(i)-center.x)*f,center.y+(p.getY(i)-center.y)*f,center.z+(p.getZ(i)-center.z)*f);}g.computeVertexNormals();
+ wood.push({geometry:g,matrix:identity});};
+ branch([[0,0,0],[.08,height*.23,-.12],[-.15,height*.52,.1],[.17,height*.83,-.1],[.2,height,0]],variant===1?.19:.34);
+ for(let root=0;root<(distant?3:6);root++){const a=root/6*Math.PI*2;branch([[0,.2,0],[Math.sin(a)*.45,.06,Math.cos(a)*.45],[Math.sin(a)*.85,0,Math.cos(a)*.85]],.09);}
+ for(let b=0;b<(distant?5:9);b++){const a=b*2.399+random()*.3,base=height*(.35+random()*.34),rad=crown*(.6+random()*.4),end=[Math.sin(a)*rad,base+height*.25,Math.cos(a)*rad];branch([[.05,base,0],[end[0]*.42,base+.8,end[2]*.42],end],.105*(1-b*.045));for(let twig=0;twig<(distant?0:3);twig++){const aa=a+(twig-1)*.55,rr=rad*(.6+random()*.45);branch([[end[0]*.4,base+.8,end[2]*.4],[Math.sin(aa)*rr,base+height*.25,Math.cos(aa)*rr],[Math.sin(aa)*(rr+.35),base+height*.35,Math.cos(aa)*(rr+.35)]],.026);}}
+ const count=distant?34:variant===2?100:variant===1?135:240,dummy=new THREE.Object3D();
+ for(let i=0;i<count;i++){const angle=random()*Math.PI*2,radius=Math.sqrt(random())*crown,y=height*.57+random()*height*.5,spread=Math.max(.25,1-Math.abs(y-height*.8)/(height*.5));dummy.position.set(Math.sin(angle)*radius*spread,y,Math.cos(angle)*radius*spread);dummy.rotation.set((random()-.5)*1.9,random()*Math.PI*2,(random()-.5)*1.6);const size=.9+random()*.75;dummy.scale.set(size,variant===2?size*1.4:size,1);dummy.updateMatrix();const g=new THREE.PlaneGeometry(1,1,2,2),p=g.attributes.position;for(let j=0;j<p.count;j++)p.setZ(j,Math.sin(p.getX(j)*Math.PI)*.1+Math.cos(p.getY(j)*Math.PI)*.08);g.computeVertexNormals();leaves.push({geometry:g,matrix:dummy.matrix.clone()});}
+ return{wood:merged(wood),leaves:merged(leaves),height};
+}
+export class HobbitonBotany{
+ constructor(scene,assets,terrain,quality,options={}){this.options=options;this.scene=scene;this.assets=assets;this.terrain=terrain;this.quality=quality;this.plants=[];this.resources=[];this.count=0;this.library=Array.from({length:6},(_,v)=>treeGeometry(817+(v%3)*312,v%3,v>=3));this.groups=Array.from({length:6},()=>[]);this.wind={value:0};
+ this.leafMaterial=new THREE.MeshStandardMaterial({map:assets.maps.leaves,alphaTest:.38,side:THREE.DoubleSide,color:options.golden?0xd2b65b:0xb7c8a5,roughness:.86});this.leafMaterial.onBeforeCompile=shader=>{shader.uniforms.uHobbitonWind=this.wind;shader.vertexShader='uniform float uHobbitonWind;\n'+shader.vertexShader;shader.vertexShader=shader.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nfloat windWeight=smoothstep(2.,9.,position.y);transformed.x+=sin(uHobbitonWind*.7+position.y*.9+position.z*.4)*.055*windWeight;');};this.leafMaterial.customProgramCacheKey=()=> 'hobbiton-canopy-wind-v2';if(assets.portrait)applyOrganicSurface(this.leafMaterial,'leaf');}
+ tree(x,z,scale=1,variant=0,distant=false){variant=((variant%3)+3)%3+(distant?3:0);this.groups[variant].push({x,z,y:this.terrain.height(x,z),scale,yaw:(Math.sin(x*9+z*6)+1)*Math.PI});this.count++;}
+ commit(){const dummy=new THREE.Object3D(),bark=this.assets.material('wood',0xb7a58b);for(let v=0;v<6;v++){const list=this.groups[v];if(!list.length)continue;for(const[type,material]of[['wood',bark],['leaves',this.leafMaterial]]){const mesh=new THREE.InstancedMesh(this.library[v][type],material,list.length);list.forEach((t,i)=>{dummy.position.set(t.x,t.y,t.z);dummy.rotation.set(0,t.yaw,0);dummy.scale.set(t.scale*(t.width||1),t.scale,t.scale*(t.width||1));dummy.updateMatrix();mesh.setMatrixAt(i,dummy.matrix);if(this.assets.portrait){const variation=.88+(Math.sin(t.x*12.9+t.z*7.3)+1)*.075;mesh.setColorAt(i,new THREE.Color().setRGB(variation,variation*(type==='leaves'?1.015:1),variation*.97));}});mesh.castShadow=mesh.receiveShadow=true;mesh.computeBoundingSphere();this.scene.add(mesh);this.resources.push(mesh);}}
+ if(this.options.groundCover===false)return;
+ // Bent, tapered blades have a rooted color gradient and world-seeded wind.
+ const positions=[],colors=[],green=new THREE.Color();
+ for(let i=0;i<9;i++){const a=i*2.399,h=.13+(i%4)*.038,bx=Math.sin(a)*.28,bz=Math.cos(a)*.28,w=.009;
+  const left=[],right=[];for(let j=0;j<=3;j++){const t=j/3,bend=t*t*.16;left.push([bx+Math.sin(a)*bend-Math.cos(a)*w*(1-t),h*t,bz+Math.cos(a)*bend+Math.sin(a)*w*(1-t)]);right.push([bx+Math.sin(a)*bend+Math.cos(a)*w*(1-t),h*t,bz+Math.cos(a)*bend-Math.sin(a)*w*(1-t)]);}
+  for(let j=0;j<3;j++)for(const p of[left[j],left[j+1],right[j],right[j],left[j+1],right[j+1]]){positions.push(...p);green.set(p[1]>h*.6?0x7f985c:p[1]>h*.2?0x5a793d:0x354c26);colors.push(green.r,green.g,green.b);}
+ }
+ const geo=new THREE.BufferGeometry();geo.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));geo.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));geo.computeVertexNormals();
+ const material=new THREE.MeshStandardMaterial({vertexColors:true,roughness:.88,side:THREE.DoubleSide});
+ material.onBeforeCompile=shader=>{shader.uniforms.uMeadowWind=this.wind;shader.vertexShader='uniform float uMeadowWind;\n'+shader.vertexShader;shader.vertexShader=shader.vertexShader.replace('#include <begin_vertex>',`#include <begin_vertex>
+ #ifdef USE_INSTANCING
+ vec2 root=instanceMatrix[3].xz;float gust=sin(uMeadowWind*1.4+root.x*.11+root.y*.07)+.35*sin(uMeadowWind*2.3+root.y*.23);transformed.x+=gust*position.y*position.y*.4;transformed.z+=gust*position.y*position.y*.17;
+ #endif`);};material.customProgramCacheKey=()=> 'atlas-meadow-wind-v1';if(this.assets.portrait)applyOrganicSurface(material,'leaf');
+ const random=randomOf(773),count=this.options.village?(this.quality==='standard'?9000:this.quality==='4k'?90000:48000):graphicsLevel(this.quality).grass,grass=new THREE.InstancedMesh(geo,material,count),extent=this.options.village?210:420;let used=0;
+ const allowed=(x,z)=>{const y=this.terrain.height(x,z);const dx=(this.terrain.height(x+.4,z)-this.terrain.height(x-.4,z))/.8,dz=(this.terrain.height(x,z+.4)-this.terrain.height(x,z-.4))/.8;return Math.hypot(dx,dz)<1.2&&Number.isFinite(y)&&y>(this.terrain.waterLevel??-1000)+.25&&!this.options.exclude?.(x,z);};
+ for(let i=0;i<count*3&&used<count;i++){const range=this.assets.portrait&&i%3!==0?Math.min(extent,140):extent,x=(random()-.5)*range,z=(random()-.5)*range;if(!allowed(x,z))continue;dummy.position.set(x,this.terrain.height(x,z)-.015,z);dummy.rotation.set(0,random()*Math.PI*2,0);dummy.scale.setScalar(.65+random()*.9);dummy.updateMatrix();grass.setMatrixAt(used++,dummy.matrix);}grass.count=used;grass.receiveShadow=true;grass.computeBoundingSphere();this.scene.add(grass);this.resources.push(grass);this.grassGeometry=geo;this.grassMaterial=material;
+ if(this.options.village){
+  const flowerGeometry=new THREE.SphereGeometry(1,5,3),flowerMaterial=new THREE.MeshStandardMaterial({roughness:.82}),flowerCount=this.quality==='standard'?140:650,flowers=new THREE.InstancedMesh(flowerGeometry,flowerMaterial,flowerCount),palette=[0xe8d9b2,0xc9af69,0xb0a3c4,0xc5c8a8];let n=0;
+  for(let i=0;i<flowerCount*4&&n<flowerCount;i++){const x=(random()-.5)*175,z=(random()-.5)*170;if(!allowed(x,z))continue;dummy.position.set(x,this.terrain.height(x,z)+.24+random()*.15,z);dummy.scale.set(.04,.025,.04);dummy.updateMatrix();flowers.setMatrixAt(n,dummy.matrix);flowers.setColorAt(n++,green.set(palette[i%4]));}flowers.count=n;flowers.computeBoundingSphere();this.scene.add(flowers);this.resources.push(flowers);this.flowerGeometry=flowerGeometry;this.flowerMaterial=flowerMaterial;
+ }
+ }
+
+ update(time){this.wind.value=time;}
+ dispose(){for(const m of this.resources){this.scene.remove(m);m.dispose?.();}for(const item of this.library){item.wood.dispose();item.leaves.dispose();}this.leafMaterial.dispose();this.grassGeometry?.dispose();this.grassMaterial?.dispose();this.flowerGeometry?.dispose();this.flowerMaterial?.dispose();this.resources=[];}
+}

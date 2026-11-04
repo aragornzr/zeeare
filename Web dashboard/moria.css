@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap');
+:root{color-scheme:dark;--gold:#d9bc89;--muted:#a4b0b7}*{box-sizing:border-box}body{margin:0;background:#080e12;color:#ecede7;font-family:Manrope,Arial,sans-serif}button,a,input{-webkit-tap-highlight-color:transparent}button{font:inherit;cursor:pointer;color:inherit}button:focus-visible,a:focus-visible,input:focus-visible,canvas:focus-visible{outline:2px solid #eed2a2;outline-offset:4px}button:disabled{opacity:.45;cursor:wait}[hidden]{display:none!important}
+.moria-header{height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;border-bottom:1px solid #ffffff12;background:#070c10}
+.wordmark{font-size:10px;letter-spacing:2px;color:#d3d9da;text-decoration:none}.wordmark span{color:#8a9aa5;margin:0 12px}.edition{font-size:9px;letter-spacing:2px;color:#8c9ba5}.moria-header button{background:none;border:0;font-size:22px}
+/* Top bar sits cleanly above the picture/3D canvas — never blocking the artwork */
+.moria-top-bar{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 28px;background:linear-gradient(180deg,#0b131b,#080e14);border-bottom:1px solid #ffffff14}
+.scene-heading{max-width:72%}.scene-heading>p:first-child{font-size:9px;letter-spacing:2.8px;color:var(--gold);margin:0}
+h1{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(28px,3.4vw,44px);font-weight:500;letter-spacing:-.5px;margin:4px 0}
+.scene-heading>p:last-child{font-size:11px;line-height:1.55;color:#cad4da;max-width:680px;margin:0}
+.moria-top-actions{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.mode-switch{padding:4px;display:flex;border:1px solid #ffffff30;border-radius:30px;background:#0b1624}
+.mode-switch button{border:0;background:none;border-radius:25px;padding:8px 14px;font-size:10px;color:#b8c7d0}
+.mode-switch button[aria-pressed=true]{background:#dce4e2;color:#101a22}
+.camera-controls{display:flex;border:1px solid #ffffff30;background:#0b1724;border-radius:6px;overflow:hidden}
+.camera-controls button{width:34px;height:34px;border:0;background:none;font-size:18px}
+.camera-controls button+button{border-left:1px solid #ffffff20}
+/* Pure, unobstructed 16:9 picture & 3D stage */
+.experience{position:relative;width:100%;aspect-ratio:16/9;max-height:76vh;overflow:hidden;background:#05080c}
+.experience canvas{position:absolute;width:100%;height:100%;inset:0;display:block;touch-action:none;cursor:grab;object-fit:contain}
+.experience canvas:active{cursor:grabbing}
+.vignette{display:none}
+/* Control deck sits cleanly below the picture/3D canvas — zero overlap on the image */
+.moria-control-deck{background:#09111a;border-top:1px solid #e6b97630;padding:12px 28px 16px}
+.gesture-hint{margin:0 0 8px;width:100%;text-align:center;font-size:8px;letter-spacing:2px;color:#9eb0bc}
+#battle-controls{background:#0c1622;border:1px solid #e6b97635;padding:12px 18px;border-radius:6px}
+.battle-title{display:flex;justify-content:space-between;gap:15px;font-size:9px;letter-spacing:1.4px;color:#dcc299}
+#time{font-variant-numeric:tabular-nums;color:#b5bec4;white-space:nowrap}
+input[type=range]{accent-color:#dbb37b}
+#timeline{width:100%;margin:10px 0}
+.playback{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.playback button{padding:8px 12px;border:1px solid #ffffff25;background:#ffffff0a;font-size:10px;border-radius:4px}
+.playback button:hover{border-color:var(--gold);background:#d9bc8918}
+.playback #play{background:#d9bc89;color:#15202a;border-color:#d9bc89;min-width:110px;font-weight:600}
+.volume-label{display:flex;align-items:center;gap:7px;font-size:9px;color:#adbdc8}
+.volume-label input{width:70px}
+#record-status{font-size:10px;line-height:1.5;margin:6px 0 0;color:#e1cba8}
+.playback a{font:10px Manrope,Arial,sans-serif;color:var(--gold);text-decoration:none;padding:8px 12px;border:1px solid #d9bc8940;border-radius:4px;white-space:nowrap}
+#record{color:#b8c7d0}
+#watch-film{margin-left:auto}
+.gate-hotspot{position:absolute;left:52%;top:55%;transform:translate(-50%,-50%);display:flex;align-items:center;flex-direction:column;border:0;background:#071321cc;border-radius:8px;padding:10px 16px;backdrop-filter:blur(6px);box-shadow:0 0 35px #c3deff18}
+.hotspot-ring{border:1px solid #bdd4e7;border-radius:50%;width:32px;height:32px;display:grid;place-items:center;font-size:22px;margin-bottom:6px;box-shadow:0 0 20px #90cbff55}
+.gate-hotspot strong{font-size:11px;font-weight:500}.gate-hotspot small{font-size:9px;margin-top:4px;color:#b7cadd}
+.gate-hotspot:hover{background:#173449e6;box-shadow:0 0 45px #b1d9fa44}
+#loading{position:absolute;inset:0;z-index:4;background:#09121de8;display:grid;place-items:center;font-family:Georgia,serif;font-size:22px;color:var(--gold)}
+.journey{display:grid;grid-template-columns:repeat(5,1fr);border-block:1px solid #ffffff17;padding:0 20px;background:#10191e}
+.journey button{display:flex;align-items:center;text-align:left;padding:18px 16px;border:0;border-bottom:2px solid transparent;background:none;gap:14px}
+.journey button>span{font-family:Georgia,serif;font-size:20px;color:#5c727d}
+.journey button>div{font-family:Georgia,serif;font-size:17px}
+.journey small{display:block;font-family:Manrope,Arial,sans-serif;font-size:7px;letter-spacing:1.5px;color:#9aa8ae;margin-top:6px}
+.journey i{margin-left:auto;font-size:15px;font-style:normal;color:#8b9aa3}
+.journey button[aria-pressed=true]{border-color:var(--gold);background:linear-gradient(0deg,#d4b67e0c,transparent)}
+.journey button[aria-pressed=true]>span{color:var(--gold)}
+footer{padding:14px 28px;display:flex;gap:25px;align-items:center;justify-content:space-between}
+footer p{font-size:10px;line-height:1.7;color:#a5b3bc;max-width:680px;margin:0}
+footer>span{font-size:8px;line-height:1.7;color:#6e838f;max-width:260px;text-align:right}
+#film-overlay,#portrait-overlay{position:fixed;inset:0;z-index:20;background:#020508f4;display:flex;justify-content:center;align-items:center;flex-direction:column;padding:38px 22px;overflow-y:auto}
+.film-stage{position:relative;width:100%;max-height:84vh;display:flex;justify-content:center;align-items:center}
+#film-overlay video{width:100%;max-height:84vh;object-fit:contain;background:#000;border:1px solid #d9bc8938;border-radius:4px}
+.portrait-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;width:100%;max-width:1280px}
+.portrait-gallery figure{margin:0;background:#0a131c;border:1px solid #d9bc8940;border-radius:6px;padding:10px;display:flex;flex-direction:column;gap:8px;cursor:pointer;transition:border-color .18s,box-shadow .18s,transform .18s}
+.portrait-gallery figure:hover,.portrait-gallery figure.active-pic{border-color:var(--gold);box-shadow:0 0 24px #d9bc8938;transform:translateY(-2px)}
+.portrait-gallery img{width:100%;aspect-ratio:16/9;object-fit:contain;background:#04070b;border-radius:4px}
+.portrait-gallery figcaption{font-size:10px;line-height:1.5;color:#cbd5dc}
+.portrait-gallery figcaption strong{color:var(--gold)}
+#film-canvas{position:absolute;inset:0;width:100%;height:calc(100% - 48px);pointer-events:none;object-fit:contain}
+#film-overlay>p{font-size:10px;line-height:1.6;color:#cbd5dc;text-align:center;max-width:760px;margin-top:12px}
+#close-film,#close-portrait{position:fixed;right:20px;top:14px;width:36px;height:36px;border:1px solid #ffffff40;border-radius:50%;background:#10202d;font-size:24px;z-index:25}
+body.embedded .moria-header{display:none}
+body.embedded .moria-top-bar{padding:12px 20px}
+body.embedded .moria-control-deck{padding:10px 20px 14px}
+body.embedded footer{padding:12px 20px}
+@media(max-width:760px){
+ .moria-top-bar{flex-direction:column;align-items:flex-start;padding:12px 16px;gap:10px}
+ .scene-heading{max-width:100%}
+ .moria-top-actions{width:100%;justify-content:space-between}
+ .moria-control-deck{padding:10px 14px}
+ #battle-controls{padding:10px 12px}
+ #watch-film{margin-left:0}
+ .journey{padding:0 6px;grid-template-columns:repeat(2,1fr)}
+ .journey button{padding:14px 8px;gap:8px}
+ footer{padding:14px;display:block}
+ footer>span{display:block;margin-top:6px;text-align:left;max-width:none}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+#landscape{object-fit:contain;background:#080e12}

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "476568118086",
+    "project_id": "loginsept162026",
+    "storage_bucket": "loginsept162026.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:476568118086:android:35ab4521736aaac63c7b47",
+        "android_client_info": {
+          "package_name": "com.example.dok_arvin_apps"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD__2QYt6_5zJH3_z6U7Ya3f0xY2BfNLMg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

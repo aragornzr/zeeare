@@ -1,0 +1,8 @@
+{
+  "file": "cabbage-leaf.png",
+  "tool": "built-in image_gen",
+  "prompt": "cabbage-leaf-prompt.txt",
+  "width": 1254,
+  "height": 1254,
+  "purpose": "Alpha cutout texture on curved vegetable leaf meshes"
+}

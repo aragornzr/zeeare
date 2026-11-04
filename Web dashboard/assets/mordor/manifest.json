@@ -1,0 +1,30 @@
+{
+  "place": "Mordor",
+  "interpretation": "Compressed regional reconstruction from the supplied brief; not canonical dimensions or surveyed geology.",
+  "liveOutput": {
+    "width": 3840,
+    "height": 2160,
+    "renderedFrom3D": true,
+    "upscaled": false
+  },
+  "savedFrame": {
+    "file": "mordor-3840x2160.png",
+    "width": 3840,
+    "height": 2160
+  },
+  "cinematic": {
+    "file": "mordor-4k-tour.webm",
+    "codec": "VP9",
+    "width": 3840,
+    "height": 2160,
+    "durationSeconds": 40,
+    "frames": 960,
+    "fps": 24,
+    "audio": false,
+    "chapters": 8,
+    "method": "Offline deterministic WebCodecs encoding"
+  },
+  "explorationLandmarks": 10,
+  "brief": "../../docs/mordor-brief.md",
+  "literalFlamingEye": false
+}

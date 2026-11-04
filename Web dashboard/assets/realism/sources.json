@@ -1,0 +1,47 @@
+{
+  "license": "CC0-1.0",
+  "licenseUrl": "https://polyhaven.com/license",
+  "assets": [
+    {
+      "asset": "rock_face_03",
+      "kind": "diff",
+      "file": "assets/realism/rock_face_03_diff.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rock_face_03/rock_face_03_diff_2k.jpg"
+    },
+    {
+      "asset": "rock_face_03",
+      "kind": "nor_gl",
+      "file": "assets/realism/rock_face_03_nor_gl.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/rock_face_03/rock_face_03_nor_gl_2k.jpg",
+      "bytes": 4473242
+    },
+    {
+      "asset": "bark_brown_01",
+      "kind": "diff",
+      "file": "assets/realism/bark_brown_01_diff.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/bark_brown_01/bark_brown_01_diff_2k.jpg",
+      "bytes": 2667267
+    },
+    {
+      "asset": "bark_brown_01",
+      "kind": "nor_gl",
+      "file": "assets/realism/bark_brown_01_nor_gl.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/bark_brown_01/bark_brown_01_nor_gl_2k.jpg",
+      "bytes": 4621865
+    },
+    {
+      "asset": "brown_mud_leaves_01",
+      "kind": "diff",
+      "file": "assets/realism/brown_mud_leaves_01_diff.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/brown_mud_leaves_01/brown_mud_leaves_01_diff_2k.jpg",
+      "bytes": 4539452
+    },
+    {
+      "asset": "brown_mud_leaves_01",
+      "kind": "nor_gl",
+      "file": "assets/realism/brown_mud_leaves_01_nor_gl.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/brown_mud_leaves_01/brown_mud_leaves_01_nor_gl_2k.jpg",
+      "bytes": 5688696
+    }
+  ]
+}

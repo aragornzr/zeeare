@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://firebasestorage.googleapis.com https://storage.googleapis.com; connect-src 'self' https://*.googleapis.com https://*.cloudfunctions.net https://loginsept162026.firebaseapp.com; frame-src https://loginsept162026.firebaseapp.com; object-src 'none'; base-uri 'none'; form-action 'self'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#132f42">
+  <title>Sign in | San Antonio</title>
+  <link rel="stylesheet" href="styles.css?v=20261012-users2">
+  <link rel="stylesheet" href="dashboard-theme.css?v=20261027-workspace">
+  <script src="auth-page.js?v=20261027-session-security" defer></script>
+</head>
+<body class="account-page" data-page="login">
+  <a class="skip-link" href="#main-content">Skip to sign in</a>
+  <header class="header"><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">SA</span><span>San Antonio<small>MUNICIPAL WORKSPACE</small></span></a><a class="back-link" href="index.html">← Back to home</a></header>
+  <main class="account-main" id="main-content">
+    <section class="account-card" aria-labelledby="login-title">
+      <p class="eyebrow">SAN ANTONIO • MUNICIPAL SERVICES</p>
+      <h1 id="login-title">Welcome back.</h1>
+      <p class="account-intro">Your departments, records and daily services. Together in one workspace.</p>
+      <form id="login-form">
+        <label for="email">Email address</label>
+        <input id="email" name="email" type="email" autocomplete="username" placeholder="you@example.com" required>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" required>
+        <label class="remember-label" for="save-login"><input id="save-login" name="save-login" type="checkbox"> Save login on this browser</label>
+        <p class="field-hint">Use only on your personal device.</p>
+        <p id="auth-status" class="auth-status" role="status" aria-live="polite">Connecting to sign-in…</p>
+        <button id="sign-in" class="primary-button full-width" type="submit" disabled>Sign in <span aria-hidden="true">↗</span></button>
+      </form>
+      <p class="account-note">Use the account you registered in the app.</p>
+    </section>
+  </main>
+  <noscript><p class="auth-status">Enable JavaScript to sign in.</p></noscript>
+</body>
+</html>

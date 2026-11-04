@@ -1,0 +1,272 @@
+{
+  "hero": {
+    "ready": true,
+    "name": "Bag End",
+    "mode": "cinematic",
+    "active": true,
+    "time": 0,
+    "resources": {
+      "geometries": 157,
+      "textures": 29
+    },
+    "camera": [
+      -3,
+      14.132953458108062,
+      20
+    ],
+    "target": [
+      0,
+      16.53295345810806,
+      -10
+    ],
+    "landmarks": [
+      "Bag End · Bilbo’s home",
+      "Bilbo · a cigar on the doorstep",
+      "Gandalf · at the garden gate",
+      "Frodo · off down the lane",
+      "The old oak & wooded Hill",
+      "Cottage gardens & neighbouring smials"
+    ],
+    "people": 3,
+    "resolution": [
+      3840,
+      2160
+    ],
+    "quality": "4k",
+    "detail": {
+      "pebbles": 467,
+      "understory": true,
+      "biome": "temperate"
+    },
+    "cast": {
+      "names": [
+        "Bilbo Baggins",
+        "Gandalf the Grey",
+        "Frodo Baggins"
+      ],
+      "imageBased": false,
+      "activities": [
+        "lighting a cigar",
+        "arriving at the gate with a staff",
+        "running out of Bag End"
+      ]
+    },
+    "actors": {
+      "bilbo": [
+        1.1,
+        10.547953458108063,
+        -7.8
+      ],
+      "frodo": [
+        -2.4155731244831915,
+        10.342619072540716,
+        -2.2186124872203568
+      ],
+      "gandalf": [
+        -6.6000000000000005,
+        9.547953458108063,
+        10.9
+      ],
+      "frodoVisible": true
+    },
+    "shadowSize": 4096
+  },
+  "capture": {
+    "width": 3840,
+    "height": 2160,
+    "bytes": 16669119
+  },
+  "shots": [
+    {
+      "time": 2,
+      "camera": [
+        -4.038787070558968,
+        13.196844539635519,
+        18.893414341330484
+      ],
+      "actors": {
+        "bilbo": [
+          1.1,
+          10.547953458108063,
+          -7.8
+        ],
+        "frodo": [
+          -4.927647765902224,
+          9.592928117832844,
+          5.124911490166292
+        ],
+        "gandalf": [
+          -6.2,
+          9.547953458108063,
+          10.3
+        ],
+        "frodoVisible": true
+      }
+    },
+    {
+      "time": 7,
+      "camera": [
+        -4.114524919918763,
+        11.502780993983315,
+        14.379700517041583
+      ],
+      "actors": {
+        "bilbo": [
+          1.1,
+          10.547953458108063,
+          -7.8
+        ],
+        "frodo": [
+          -12.694157512957906,
+          3.6733122010019863,
+          22.867911582436555
+        ],
+        "gandalf": [
+          -6.2,
+          9.547953458108063,
+          10.3
+        ],
+        "frodoVisible": true
+      }
+    },
+    {
+      "time": 12,
+      "camera": [
+        5.613588315153182,
+        12.788572028783392,
+        0.97843390760133
+      ],
+      "actors": {
+        "bilbo": [
+          1.1,
+          10.547953458108063,
+          -7.8
+        ],
+        "frodo": [
+          -25,
+          2.505708432054256,
+          34
+        ],
+        "gandalf": [
+          -6.2,
+          9.547953458108063,
+          10.3
+        ],
+        "frodoVisible": false
+      }
+    },
+    {
+      "time": 20,
+      "camera": [
+        -11,
+        11.627714578094455,
+        14
+      ],
+      "actors": {
+        "bilbo": [
+          1.1,
+          10.547953458108063,
+          -7.8
+        ],
+        "frodo": [
+          -3.882927350221013,
+          9.871852046423394,
+          1.3814948278361843
+        ],
+        "gandalf": [
+          -6.2,
+          9.547953458108063,
+          10.3
+        ],
+        "frodoVisible": true
+      }
+    },
+    {
+      "time": 30,
+      "camera": [
+        -1.248485091486529,
+        25.17613652901159,
+        19.669529755657006
+      ],
+      "actors": {
+        "bilbo": [
+          1.1,
+          10.547953458108063,
+          -7.8
+        ],
+        "frodo": [
+          -24.07940225122402,
+          2.599116763802351,
+          33.283323807657766
+        ],
+        "gandalf": [
+          -6.2,
+          9.547953458108063,
+          10.3
+        ],
+        "frodoVisible": true
+      }
+    },
+    {
+      "time": 38,
+      "camera": [
+        4.92884375668266,
+        17.398944933403214,
+        19.92366878607163
+      ],
+      "actors": {
+        "bilbo": [
+          1.1,
+          10.547953458108063,
+          -7.8
+        ],
+        "frodo": [
+          -2.4155731244831915,
+          10.368861834104777,
+          -2.2186124872203568
+        ],
+        "gandalf": [
+          -6.2,
+          9.547953458108063,
+          10.3
+        ],
+        "frodoVisible": true
+      }
+    }
+  ],
+  "portrait": {
+    "width": 1672,
+    "height": 941
+  },
+  "phone": {
+    "width": 390,
+    "viewport": 390
+  },
+  "atlas": "Bag End",
+  "errors": [],
+  "resolvedIssues": [
+    {
+      "method": "Log.entryAdded",
+      "params": {
+        "entry": {
+          "source": "network",
+          "level": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (File not found)",
+          "timestamp": 1793457104748.715,
+          "url": "http://127.0.0.1:8080/favicon.ico",
+          "networkRequestId": "11642.644"
+        }
+      }
+    }
+  ],
+  "atlasRecheck": {
+    "name": "Bag End",
+    "resolution": [
+      3840,
+      2160
+    ],
+    "errors": []
+  },
+  "browser": "Chrome/133.0.6943.16",
+  "automatedTests": 83
+}

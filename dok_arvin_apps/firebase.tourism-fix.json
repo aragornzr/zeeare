@@ -1,0 +1,9 @@
+{
+  "firestore": {
+    "rules": "firestore.tourism-fix.rules"
+  },
+  "emulators": {
+    "firestore": {"host": "127.0.0.1", "port": 8185},
+    "ui": {"enabled": false}
+  }
+}

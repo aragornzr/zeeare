@@ -1,0 +1,99 @@
+{
+  "license": "CC0-1.0",
+  "licenseUrl": "https://polyhaven.com/license",
+  "author": "Poly Haven contributors",
+  "assets": [
+    {
+      "asset": "aerial_grass_rock",
+      "map": "diff",
+      "file": "assets/materials/aerial_grass_rock_diff.jpg",
+      "bytes": 666655,
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/aerial_grass_rock/aerial_grass_rock_diff_1k.jpg"
+    },
+    {
+      "asset": "aerial_grass_rock",
+      "map": "nor_gl",
+      "file": "assets/materials/aerial_grass_rock_nor_gl.jpg",
+      "bytes": 904956,
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/aerial_grass_rock/aerial_grass_rock_nor_gl_1k.jpg"
+    },
+    {
+      "asset": "castle_brick_01",
+      "map": "diff",
+      "file": "assets/materials/castle_brick_01_diff.jpg",
+      "bytes": 693571,
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/castle_brick_01/castle_brick_01_diff_1k.jpg"
+    },
+    {
+      "asset": "castle_brick_01",
+      "map": "nor_gl",
+      "file": "assets/materials/castle_brick_01_nor_gl.jpg",
+      "bytes": 1069379,
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/castle_brick_01/castle_brick_01_nor_gl_1k.jpg"
+    },
+    {
+      "asset": "roof_slates_02",
+      "map": "diff",
+      "file": "assets/materials/roof_slates_02_diff.jpg",
+      "bytes": 515626,
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/roof_slates_02/roof_slates_02_diff_1k.jpg"
+    },
+    {
+      "asset": "roof_slates_02",
+      "map": "nor_gl",
+      "file": "assets/materials/roof_slates_02_nor_gl.jpg",
+      "bytes": 763206,
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/roof_slates_02/roof_slates_02_nor_gl_1k.jpg"
+    }
+  ],
+  "highResolutionAssets": [
+    {
+      "asset": "aerial_grass_rock",
+      "map": "diff",
+      "file": "assets/materials/aerial_grass_rock_diff_4k.jpg",
+      "bytes": 9067116,
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/aerial_grass_rock/aerial_grass_rock_diff_4k.jpg",
+      "resolution": 4096
+    },
+    {
+      "asset": "aerial_grass_rock",
+      "map": "nor_gl",
+      "file": "assets/materials/aerial_grass_rock_nor_gl_4k.jpg",
+      "bytes": 16425331,
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/aerial_grass_rock/aerial_grass_rock_nor_gl_4k.jpg",
+      "resolution": 4096
+    },
+    {
+      "asset": "castle_brick_01",
+      "map": "diff",
+      "file": "assets/materials/castle_brick_01_diff_4k.jpg",
+      "bytes": 9948604,
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/castle_brick_01/castle_brick_01_diff_4k.jpg",
+      "resolution": 4096
+    },
+    {
+      "asset": "castle_brick_01",
+      "map": "nor_gl",
+      "file": "assets/materials/castle_brick_01_nor_gl_4k.jpg",
+      "bytes": 15982552,
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/castle_brick_01/castle_brick_01_nor_gl_4k.jpg",
+      "resolution": 4096
+    },
+    {
+      "asset": "roof_slates_02",
+      "map": "diff",
+      "file": "assets/materials/roof_slates_02_diff_4k.jpg",
+      "bytes": 6013502,
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/roof_slates_02/roof_slates_02_diff_4k.jpg",
+      "resolution": 4096
+    },
+    {
+      "asset": "roof_slates_02",
+      "map": "nor_gl",
+      "file": "assets/materials/roof_slates_02_nor_gl_4k.jpg",
+      "bytes": 10639396,
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/4k/roof_slates_02/roof_slates_02_nor_gl_4k.jpg",
+      "resolution": 4096
+    }
+  ]
+}

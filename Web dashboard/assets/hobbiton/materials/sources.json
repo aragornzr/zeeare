@@ -1,0 +1,48 @@
+{
+  "license": "CC0-1.0",
+  "source": "https://polyhaven.com/license",
+  "assets": [
+    {
+      "asset": "wood_planks",
+      "map": "diff",
+      "file": "wood_planks_diff.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wood_planks/wood_planks_diff_2k.jpg",
+      "bytes": 2387732
+    },
+    {
+      "asset": "wood_planks",
+      "map": "nor_gl",
+      "file": "wood_planks_nor_gl.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wood_planks/wood_planks_nor_gl_2k.jpg",
+      "bytes": 2906326
+    },
+    {
+      "asset": "wood_planks",
+      "map": "rough",
+      "file": "wood_planks_rough.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/wood_planks/wood_planks_rough_2k.jpg",
+      "bytes": 1151798
+    },
+    {
+      "asset": "plastered_wall",
+      "map": "diff",
+      "file": "plastered_wall_diff.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/plastered_wall/plastered_wall_diff_2k.jpg",
+      "bytes": 2434531
+    },
+    {
+      "asset": "plastered_wall",
+      "map": "nor_gl",
+      "file": "plastered_wall_nor_gl.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/plastered_wall/plastered_wall_nor_gl_2k.jpg",
+      "bytes": 4505457
+    },
+    {
+      "asset": "plastered_wall",
+      "map": "rough",
+      "file": "plastered_wall_rough.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/2k/plastered_wall/plastered_wall_rough_2k.jpg",
+      "bytes": 1475662
+    }
+  ]
+}

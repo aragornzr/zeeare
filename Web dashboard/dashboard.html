@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://firebasestorage.googleapis.com https://storage.googleapis.com; connect-src 'self' https://*.googleapis.com https://*.cloudfunctions.net https://loginsept162026.firebaseapp.com; frame-src https://loginsept162026.firebaseapp.com; object-src 'none'; base-uri 'none'; form-action 'self'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#171a20">
+  <title>Web Dashboard | San Antonio</title>
+  <link rel="stylesheet" href="styles.css?v=20261024-role-dashboards">
+  <link rel="stylesheet" href="dashboard-theme.css?v=20261027-compact-updates">
+  <script src="dashboard-policy.js?v=20261026-attendance" defer></script>
+  <script src="auth-page.js?v=20261027-session-security" defer></script>
+  <script src="users-page.js?v=20261026-attendance" defer></script>
+  <script src="intro-pages.js?v=20261024-intro" defer></script>
+  <script src="tourism-destinations-page.js?v=20261025-destinations" defer></script>
+  <script src="communications-page.js?v=20261027-compact-updates" defer></script>
+  <script src="history-page.js?v=20261026-attendance" defer></script>
+  <script src="tourism-report.js?v=20261023-reports" defer></script>
+  <script src="departments-page.js?v=20261023-reports" defer></script>
+  <script src="attendance-page.js?v=20261026-attendance" defer></script>
+  <script src="tourism-fee-page.js?v=20261023-departments" defer></script>
+</head>
+<body class="dashboard-page" data-page="dashboard">
+  <header class="header"><a class="brand" href="index.html"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="brand-mark" aria-hidden="true">SA</span><span>San Antonio<small>MUNICIPAL WORKSPACE</small></span></a><div id="session-identity" class="session-identity" hidden><strong id="session-name"></strong><span id="session-role"></span><button id="my-history" class="nav-action" type="button" hidden>My activity history</button></div><button id="sign-out" class="nav-action" hidden>Sign out</button></header>
+  <a class="skip-link" href="#dashboard-content">Skip to workspace</a>
+  <main class="dashboard-main">
+    <p id="auth-status" class="auth-status" role="status" aria-live="polite">Checking your sign-in…</p>
+    <section id="dashboard-content" hidden aria-labelledby="dashboard-title">
+      <section id="department-communications" hidden></section>
+      <p class="eyebrow" id="dashboard-role">WEB DASHBOARD</p>
+      <div id="workspace-welcome">
+      <h1 id="dashboard-title">Welcome to your dashboard.</h1>
+      <p class="account-intro" id="dashboard-description">Your departments, records and services in one workspace.</p>
+      </div>
+      <nav class="dashboard-tabs" aria-label="Dashboard menu"><button class="nav-action" id="overview-tab" aria-controls="overview-panel" aria-selected="true">Overview</button><button class="nav-action" id="users-tab" hidden aria-controls="users-panel" aria-selected="false">Users &amp; permissions</button><button class="nav-action" id="tourism-tab" aria-controls="tourism-panel" aria-selected="false" hidden>Tourism</button></nav>
+      <div class="dashboard-grid" id="overview-panel">
+        <article class="dashboard-card"><p class="eyebrow">YOUR ACCOUNT</p><h2>Account &amp; access</h2><p id="user-email"></p><p class="account-note">Your workspace follows your approved role and assigned services.</p></article>
+        <article class="dashboard-card"><p class="eyebrow">YOUR WORKSPACE</p><h2>Your departments</h2><p id="workspace-summary"></p><div class="workspace-spectrum" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div><div id="department-workspace"></div><a class="back-link" href="index.html">Municipal homepage ↗</a></article>
+        <section id="global-notices" hidden></section>
+        <section id="intro-admin-panel" hidden></section>
+      </div>
+      <section id="tourism-panel" hidden aria-labelledby="tourism-tab">
+      <section id="tourism-destinations-panel" hidden></section>
+      <div id="tourism-records-workspace"></div>
+      <section id="tourism-fee-panel" class="dashboard-card" hidden aria-labelledby="tourism-fee-title">
+        <p class="eyebrow">TOURISM ADMINISTRATION</p><h2 id="tourism-fee-title">Fee per tourist</h2>
+        <p>This rate applies to new Tourism records for the department. Total fee = fee per tourist × number of tourists. Saved records keep their original rate.</p>
+        <p id="tourism-current-fee">Loading current rate…</p>
+        <form id="tourism-fee-form">
+          <label for="tourism-fee-input">Fee per tourist (₱)</label>
+          <input id="tourism-fee-input" type="number" min="0" max="1000000" step="0.01" inputmode="decimal" required>
+          <p class="field-hint">Enter 0 for free admission. The super admin and approved Tourism admins declare the fee collected per tourist.</p>
+          <button id="save-tourism-fee" class="primary-button" type="submit">Save Tourism fee</button>
+        </form>
+        <button id="refresh-tourism-fee" class="nav-action">Refresh rate</button>
+        <p id="tourism-fee-status" class="auth-status" role="status" aria-live="polite"></p>
+      </section>
+      </section>
+      <section id="attendance-panel" hidden></section>
+      <section id="department-panel" hidden aria-labelledby="department-title"></section>
+      <section id="users-panel" hidden aria-labelledby="users-title">
+        <h2 id="users-title">Users &amp; permissions</h2>
+        <p class="account-intro" id="manager-description">An administrator must activate your user-management access.</p>
+        <p id="users-status" class="auth-status" role="status" aria-live="polite">Checking user-management access…</p>
+        <div id="user-management" hidden>
+          <div class="user-toolbar"><button class="primary-button" id="new-user">Add user</button><button class="nav-action" id="refresh-users">Refresh users</button></div>
+          <div class="user-layout">
+            <section class="dashboard-card" aria-label="Registered users"><div class="table-scroll"><table class="users-table"><thead><tr><th scope="col">User</th><th scope="col">Email</th><th scope="col">Role</th><th scope="col">Department</th><th scope="col">Status</th><th scope="col">Mobile app access</th><th scope="col">Action</th></tr></thead><tbody id="users-list"></tbody></table></div><button class="nav-action" id="more-users" hidden>Load more</button></section>
+            <section class="dashboard-card" id="user-editor" hidden aria-labelledby="user-form-title"><h2 id="user-form-title">Add user</h2>
+              <form id="user-form">
+                <label for="username">Username</label><input id="username" name="username" maxlength="80" autocomplete="off" required>
+                <label for="user-email-input">Email address (used to sign in)</label><input id="user-email-input" name="email" type="email" maxlength="254" autocomplete="off" required>
+                <label for="user-password">New password</label><input id="user-password" name="password" type="password" minlength="8" maxlength="128" autocomplete="new-password" required>
+                <p class="field-hint password-hint" id="password-hint">At least 8 characters. Passwords are never displayed or saved on this page.</p>
+                <fieldset id="role-options"><legend>Role — select one</legend>
+                  <label class="remember-label"><input type="checkbox" name="user-role" value="admin"> Department admin</label>
+                  <label class="remember-label"><input type="checkbox" name="user-role" value="superadmin" disabled> Super admin (protected account)</label>
+                  <label class="remember-label"><input type="checkbox" name="user-role" value="regular" checked> Regular user</label>
+                </fieldset>
+                <fieldset id="department-assignment"><legend>Assigned departments</legend><p class="field-hint">Only the super admin assigns department admins or transfers existing users. Regular users belong to one department.</p><div id="department-options"></div></fieldset>
+                <label class="remember-label"><input id="user-approved" type="checkbox"> Approve account access</label>
+                <p class="field-hint">Role and department assignment alone do not approve an account. Flutter also needs Mobile app and the assigned service checked. Save changes to apply access.</p>
+                <p id="user-access-summary" class="field-hint" role="status" aria-live="polite"></p>
+                <button id="apply-admin-access" class="nav-action" type="button" hidden>Apply approved department admin access</button>
+                <p class="field-hint">This fills approval, Web dashboard, Mobile app and assigned department services. Review the selections, then Save changes.</p>
+                <fieldset><legend>Allowed access</legend>
+                  <label class="remember-label"><input type="checkbox" name="user-access" value="dashboard"> Web dashboard</label>
+                  <label class="remember-label"><input type="checkbox" name="user-access" value="apps"> Mobile app</label>
+                  <label class="remember-label"><input type="checkbox" name="user-access" value="tourism"> Tourism</label>
+                  <label class="remember-label"><input type="checkbox" name="user-access" value="rhu"> RHU menu</label>
+                  <label class="remember-label"><input type="checkbox" name="user-access" value="patients"> RHU / patient records</label>
+                  <label class="remember-label"><input type="checkbox" name="user-access" value="pharmacy"> Pharmacy</label>
+                <div id="extra-section-options"></div></fieldset>
+                <label class="remember-label"><input id="user-disabled" type="checkbox"> Disable this account</label>
+                <button class="primary-button full-width" id="save-user" type="submit">Create user</button><button class="nav-action full-width" id="cancel-user" type="button">Cancel</button>
+              </form>
+            </section>
+          </div>
+        </div>
+      </section>
+      <section id="history-panel" class="dashboard-card" hidden aria-labelledby="history-title">
+        <h2 id="history-title">Account history</h2>
+        <p id="history-account"></p><p id="history-registration"></p>
+        <p class="field-hint">Dates and times use Philippine time (Asia/Manila). Login times use Firebase session timestamps. Device make, model and OS are reported by the client; older logins may not include device details. Department admins see only history within their assigned departments. History begins when tracking is activated. Password values are never stored. Changes made outside dashboard account management, including email-link password resets, are not captured here.</p>
+        <button id="refresh-history" class="nav-action">Refresh history</button>
+        <button id="close-history" class="nav-action">Close history</button>
+        <p id="history-status" class="auth-status" role="status" aria-live="polite"></p>
+        <div class="table-scroll"><table class="users-table"><thead><tr><th>Date &amp; time (Philippines)</th><th>Event</th><th>Changed by / source</th><th>Details / device</th></tr></thead><tbody id="history-list"></tbody></table></div>
+        <button id="more-history" class="nav-action" hidden>Load older records</button>
+      </section>
+    </section>
+  </main>
+  <noscript><p class="auth-status">Enable JavaScript to access the dashboard. <a href="login.html">Go to sign-in</a>.</p></noscript>
+</body>
+</html>

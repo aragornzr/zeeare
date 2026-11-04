@@ -1,0 +1,22 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function tourismAccess() {
+      return request.auth != null && (
+        (request.auth.uid == 'z9I3AD77p5PWJjsP2Ae27nW7Tze2'
+          && request.auth.token.get('role', 'regular') == 'superadmin')
+        || (request.auth.token.get('approved', false) == true
+          && request.auth.token.get('departments', []) is list
+          && request.auth.token.get('access', {}).get('apps', false) == true
+          && 'tourism' in request.auth.token.get('departments', [])
+          && request.auth.token.get('access', {}).get('tourism', false) == true));
+    }
+    match /tourism/{userId}/{recordId}/{photo} {
+      allow read: if tourismAccess() && request.auth.uid == userId;
+      allow create, update: if tourismAccess() && request.auth.uid == userId
+        && photo in ['touristPhoto.jpg', 'vehiclePhoto.jpg']
+        && request.resource.size < 20 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+    }
+  }
+}

@@ -1,0 +1,139 @@
+rules_version = '2';
+// pharmacy_inventory/{medicineId}: ownerId (immutable auth UID), name (1..160),
+// strength (0..100), quantity (integer 0..1000000), revision (1..100),
+// createdAt (immutable), updatedAt (device timestamp), uploadedAt (server time).
+// patient_records/{visitId}: ownerId (immutable auth UID), patientNumber
+// (1..80 chars), patientName/doctorName (1..160 chars), notes (0..4000 chars),
+// checkedAt/createdAt (timestamps). Visit fields are immutable; uploadedAt is
+// refreshed by server timestamp on idempotent upload retries. Account-private.
+// department_settings/tourism: current rateId and feePerPersonCentavos, server-only writes.
+// tourism_fee_rates/{rateId}: immutable approved feePerPersonCentavos, server-only writes.
+// New tourism groups: company (0..200), touristCount (1..1000), feeRateId,
+// feePerPersonCentavos (0..100000000), feeTotalCentavos (rate * count), fee (total pesos).
+// Legacy device records remain valid without the group fields.
+// tourism_records/{recordId}: ownerId (immutable auth UID), name (1..200),
+// plateNumber (0..80), optional destination (0..500), optional fee (0..1e9),
+// createdAt (immutable timestamp), uploadedAt (server time), photos (0..2
+// owner-scoped Storage paths: touristPhoto and vehiclePhoto).
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Custom claims are set only by the secure user-management backend.
+    // Explicit approval and department membership are required.
+    // Even super admins retain account ownership boundaries for feature records.
+    function hasAccess(section) {
+      return request.auth != null && (
+        (request.auth.uid == 'z9I3AD77p5PWJjsP2Ae27nW7Tze2'
+          && request.auth.token.get('role', 'regular') == 'superadmin')
+        || (request.auth.token.get('approved', false) == true
+          && request.auth.token.get('departments', []) is list
+          && request.auth.token.get('access', {}).get('apps', false) == true
+          && (section == 'tourism'
+            ? 'tourism' in request.auth.token.get('departments', [])
+            : 'rhu' in request.auth.token.get('departments', []))
+          && request.auth.token.get('access', {}).get(section, false) == true));
+    }
+    match /pharmacy_inventory/{medicineId} {
+      function ownsMedicine() {
+        return hasAccess('pharmacy') && resource.data.ownerId == request.auth.uid;
+      }
+      function validMedicine() {
+        let data = request.resource.data;
+        let fields = ['ownerId', 'name', 'strength', 'quantity', 'revision',
+                      'createdAt', 'updatedAt', 'uploadedAt'];
+        return hasAccess('pharmacy')
+          && data.keys().hasAll(fields) && data.keys().hasOnly(fields)
+          && data.ownerId == request.auth.uid
+          && data.name is string && data.name.size() > 0 && data.name.size() <= 160
+          && data.strength is string && data.strength.size() <= 100
+          && data.quantity is int && data.quantity >= 0 && data.quantity <= 1000000
+          && data.revision is string && data.revision.size() > 0 && data.revision.size() <= 100
+          && data.createdAt is timestamp && data.updatedAt is timestamp
+          && data.createdAt <= data.updatedAt && data.updatedAt <= request.time
+          && data.uploadedAt == request.time;
+      }
+      allow read: if ownsMedicine();
+      allow create: if validMedicine();
+      allow update: if ownsMedicine() && validMedicine()
+        && request.resource.data.ownerId == resource.data.ownerId
+        && request.resource.data.createdAt == resource.data.createdAt;
+    }
+    match /patient_records/{visitId} {
+      function isOwner() {
+        return hasAccess('patients') && resource.data.ownerId == request.auth.uid;
+      }
+      function validPatientRecord() {
+        let data = request.resource.data;
+        let fields = ['ownerId', 'patientNumber', 'patientName', 'doctorName',
+                      'notes', 'checkedAt', 'createdAt', 'uploadedAt'];
+        return hasAccess('patients')
+          && data.keys().hasAll(fields) && data.keys().hasOnly(fields)
+          && data.ownerId == request.auth.uid
+          && data.patientNumber is string && data.patientNumber.size() > 0 && data.patientNumber.size() <= 80
+          && data.patientName is string && data.patientName.size() > 0 && data.patientName.size() <= 160
+          && data.doctorName is string && data.doctorName.size() > 0 && data.doctorName.size() <= 160
+          && data.notes is string && data.notes.size() <= 4000
+          && data.checkedAt is timestamp && data.checkedAt <= data.createdAt
+          && data.createdAt is timestamp && data.createdAt <= request.time
+          && data.uploadedAt == request.time;
+      }
+      allow read: if isOwner();
+      allow create: if validPatientRecord();
+      // Existing visits cannot be rewritten. Only retry metadata may change.
+      allow update: if isOwner() && validPatientRecord()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['uploadedAt']);
+    }
+    match /department_settings/{department} {
+      allow get: if department == 'tourism' && hasAccess('tourism');
+    }
+    match /tourism_fee_rates/{rateId} {
+      allow get: if hasAccess('tourism');
+    }
+    match /tourism_records/{recordId} {
+      function validGroup(data) {
+        let groupFields = ['touristCount', 'feeRateId', 'feePerPersonCentavos', 'feeTotalCentavos'];
+        return !data.keys().hasAny(groupFields) || (
+          data.keys().hasAll(groupFields.concat(['fee']))
+          && data.touristCount is int && data.touristCount >= 1 && data.touristCount <= 1000
+          && data.feeRateId is string && data.feeRateId.size() > 0 && data.feeRateId.size() <= 128
+          && data.feeRateId.matches('^[A-Za-z0-9_-]+$')
+          && data.feePerPersonCentavos is int && data.feePerPersonCentavos >= 0 && data.feePerPersonCentavos <= 100000000
+          && data.feeTotalCentavos is int && data.feeTotalCentavos == data.feePerPersonCentavos * data.touristCount
+          && data.fee is number && data.fee == data.feeTotalCentavos / 100.0
+          && get(/databases/$(database)/documents/tourism_fee_rates/$(data.feeRateId)).data.feePerPersonCentavos == data.feePerPersonCentavos);
+      }
+      function ownsRecord() {
+        return hasAccess('tourism') && resource.data.ownerId == request.auth.uid;
+      }
+      function validPhoto(photos, key, recordId) {
+        return !(key in photos) || (photos[key] is string
+          && photos[key].size() <= 512
+          && photos[key] == 'tourism/' + request.auth.uid + '/' + recordId + '/' + key + '.jpg');
+      }
+      function validRecord() {
+        let data = request.resource.data;
+        let required = ['ownerId', 'name', 'plateNumber', 'createdAt', 'uploadedAt', 'photos'];
+        return hasAccess('tourism')
+          && data.keys().hasAll(required)
+          && data.keys().hasOnly(required.concat(['destination', 'fee', 'company', 'touristCount', 'feeRateId', 'feePerPersonCentavos', 'feeTotalCentavos']))
+          && data.ownerId == request.auth.uid
+          && data.name is string && data.name.size() > 0 && data.name.size() <= 200
+          && data.plateNumber is string && data.plateNumber.size() <= 80
+          && (!('destination' in data) || (data.destination is string && data.destination.size() <= 500))
+          && (!('fee' in data) || (data.fee is number && data.fee >= 0 && data.fee <= 1000000000))
+          && data.createdAt is timestamp && data.createdAt <= request.time
+          && data.uploadedAt == request.time
+          && (!('company' in data) || (data.company is string && data.company.size() <= 200))
+          && validGroup(data)
+          && data.photos is map
+          && data.photos.keys().hasOnly(['touristPhoto', 'vehiclePhoto'])
+          && validPhoto(data.photos, 'touristPhoto', recordId)
+          && validPhoto(data.photos, 'vehiclePhoto', recordId);
+      }
+      allow create: if validRecord();
+      allow read: if ownsRecord();
+      allow update: if ownsRecord() && validRecord()
+        && request.resource.data.ownerId == resource.data.ownerId
+        && request.resource.data.createdAt == resource.data.createdAt;
+    }
+  }
+}
